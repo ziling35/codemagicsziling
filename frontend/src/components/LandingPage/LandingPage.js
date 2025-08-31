@@ -185,7 +185,7 @@ export const LandingPage = () => {
                 disabled={false}
                 shadowColor="#1B4B82"
                 frontColor="#2D7CD4"
-                alt={isAuthenticated ? 'Продолжить обучение' : 'Начать программировать'}
+                alt={isAuthenticated ? 'Продолжить обучение' : 'Попробовать бесплатно'}
                 onClick={handleContinuePlaying}
                 width={300}
                 height={50}
