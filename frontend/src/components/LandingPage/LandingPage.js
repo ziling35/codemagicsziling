@@ -4,7 +4,7 @@ import { useUser } from '../../contexts/UserContext';
 import { LoginModal } from '../LoginModal/LoginModal';
 import { Layout } from '../Layout/Layout';
 import { ActionButton } from '../ActionButton/ActionButton';
-import howItWorksImage from '../../assets/how-it-works.webp';
+import codemagicsVideo from '../../assets/codemagics.webm';
 import theoryImage from '../../assets/theory.webp';
 import pythonImage from '../../assets/python.webp';
 import cloudImage from '../../assets/cloud.webp';
@@ -21,6 +21,7 @@ import {
   FeatureSection,
   FeatureContent,
   FeatureImage,
+  FeatureVideo,
   FeatureTitle,
   FeatureDescription,
   CurriculumContainer,
@@ -210,9 +211,16 @@ export const LandingPage = () => {
                 учебный процесс превращается в захватывающую игру.
               </FeatureDescription>
             </FeatureContent>
-            <FeatureImage>
-              <img src={howItWorksImage} alt="интерфейс игры для изучения программирования для детей" />
-            </FeatureImage>
+            <FeatureVideo>
+              <video 
+                src={codemagicsVideo} 
+                alt="интерфейс игры для изучения программирования для детей"
+                autoPlay 
+                loop 
+                muted
+                playsInline
+              />
+            </FeatureVideo>
           </FeatureSection>
 
           <FeatureSection>

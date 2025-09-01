@@ -165,6 +165,34 @@ export const FeatureImage = styled.div`
   }
 `;
 
+export const FeatureVideo = styled.div`
+  flex: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 16px;
+
+  video {
+    max-width: 100%;
+    max-height: 400px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+    transform: scaleX(1.02);
+  }
+
+  @media (max-width: 768px) {
+    border-radius: 10px;
+    
+    video {
+      border-radius: 10px;
+      max-height: 300px;
+    }
+  }
+`;
+
 export const FeatureTitle = styled.h2`
   font-family: 'Montserrat', sans-serif;
   font-size: 42px;
