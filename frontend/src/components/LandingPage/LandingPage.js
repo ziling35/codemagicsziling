@@ -8,6 +8,8 @@ import codemagicsVideo from '../../assets/codemagics.webm';
 import theoryImage from '../../assets/theory.webp';
 import pythonImage from '../../assets/python.webp';
 import cloudImage from '../../assets/cloud.webp';
+import tgPostImage from '../../assets/tg-post.jpg';
+import tgLogo from '../../assets/tg-logo.png';
 import { ReactComponent as TelegramIcon } from '../../assets/telegram.svg';
 import {
   LandingContainer,
@@ -46,6 +48,22 @@ import {
   SkeletonEditorContainer,
   CloudsContainer,
   CloudImage,
+  TelegramPostContainer,
+  TelegramPostWidget,
+  TelegramPostHeader,
+  TelegramChannelInfo,
+  TelegramAvatar,
+  TelegramChannelDetails,
+  TelegramChannelName,
+  TelegramChannelHandle,
+  TelegramPostContent,
+  TelegramPostImage,
+  TelegramPostTextContent,
+  TelegramPostTitle,
+  TelegramPostText,
+  TelegramPostFooter,
+  TelegramPostTime,
+  TelegramChannelLink,
 } from './styled';
 import { Button } from '../Button/Button';
 
@@ -65,6 +83,45 @@ const LandingPageDemoSkeleton = () => (
     <SkeletonEditorContainer>
     </SkeletonEditorContainer>
   </DemoLevelSkeletonWrapper>
+);
+
+const TelegramPost = () => (
+  <TelegramPostContainer>
+    <TelegramPostWidget>
+      <TelegramPostHeader>
+        <TelegramChannelInfo onClick={() => window.open('https://t.me/codemagics', '_blank')}>
+          <TelegramAvatar>
+            <img src={tgLogo} alt="Telegram Logo" />
+          </TelegramAvatar>
+          <TelegramChannelDetails>
+            <TelegramChannelName>
+              CodeMagics
+            </TelegramChannelName>
+            <TelegramChannelHandle>@codemagics</TelegramChannelHandle>
+          </TelegramChannelDetails>
+        </TelegramChannelInfo>
+      </TelegramPostHeader>
+      <TelegramPostContent>
+        <TelegramPostImage>
+          <img src={tgPostImage} alt="ChatGPT vs первый уровень CodeMagics" />
+        </TelegramPostImage>
+        <TelegramPostTextContent>
+          <TelegramPostTitle>
+            <strong>ChatGPT</strong> vs первый уровень <strong>CodeMagics</strong>
+          </TelegramPostTitle>
+          <TelegramPostText>
+            Мы попросили последнюю модель от OpenAI — GPT-5 — пройти первый первый уровень нашего первого модуля. Результаты шокировали...
+          </TelegramPostText>
+        </TelegramPostTextContent>
+      </TelegramPostContent>
+      <TelegramPostFooter>
+        <TelegramPostTime>2 дня назад</TelegramPostTime>
+        <TelegramChannelLink href="https://t.me/codemagics/14" target="_blank" rel="noopener noreferrer">
+          Читать в Telegram
+        </TelegramChannelLink>
+      </TelegramPostFooter>
+    </TelegramPostWidget>
+  </TelegramPostContainer>
 );
 
 export const LandingPage = () => {
@@ -222,6 +279,8 @@ export const LandingPage = () => {
               />
             </FeatureVideo>
           </FeatureSection>
+
+          <TelegramPost />
 
           <FeatureSection>
             <FeatureContent>

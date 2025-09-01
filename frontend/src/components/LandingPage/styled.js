@@ -520,5 +520,225 @@ export const CloudImage = styled.img`
   }
 `;
 
+/* Стили для виджета Telegram поста */
+export const TelegramPostContainer = styled.div`
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 1340px) {
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+  }
+`;
+
+export const TelegramPostWidget = styled.div`
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (max-width: 900px) {
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    border-radius: 16px;
+  }
+`;
+
+export const TelegramPostHeader = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 16px 20px 16px;
+  border-bottom: 1px solid #f0f0f0;
+
+  @media (max-width: 768px) {
+    padding: 16px 20px 12px;
+  }
+`;
+
+export const TelegramChannelInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+`;
+
+export const TelegramAvatar = styled.div`
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
+export const TelegramChannelDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TelegramChannelName = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+export const TelegramChannelHandle = styled.div`
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #888;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+`;
+
+export const TelegramPostContent = styled.div`
+  display: flex;
+  gap: 24px;
+  padding: 24px 28px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+`;
+
+export const TelegramPostImage = styled.div`
+  flex: 0 0 180px;
+  display: flex;
+  align-items: flex-start;
+  
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    flex: none;
+    width: 100%;
+    justify-content: center;
+    
+    img {
+      width: 70%;
+      max-width: 300px;
+    }
+  }
+`;
+
+export const TelegramPostTextContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TelegramPostTitle = styled.h3`
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.3;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+
+  strong {
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+`;
+
+export const TelegramPostText = styled.div`
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  white-space: pre-line;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+export const TelegramPostFooter = styled.div`
+  padding: 16px 28px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+
+  @media (max-width: 768px) {
+    padding: 12px 20px 16px;
+  }
+`;
+
+export const TelegramPostTime = styled.div`
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #888;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+`;
+
+export const TelegramChannelLink = styled.a`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0088cc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #006699;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+`;
+
 
 
