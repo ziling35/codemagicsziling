@@ -102,7 +102,21 @@ export const Subtitle = styled.p`
 
 export const FeaturesContainer = styled.div`
   min-width: 100%;
-  background: #eaf4ff;
+  background:
+    linear-gradient(rgba(79, 142, 247, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 142, 247, 0.06) 1px, transparent 1px),
+    radial-gradient(1200px 400px at 85% 10%, rgba(99, 179, 237, 0.18), transparent 60%),
+    radial-gradient(900px 300px at 15% 35%, rgba(77, 133, 207, 0.12), transparent 60%),
+    radial-gradient(700px 240px at 50% 95%, rgba(45, 124, 212, 0.10), transparent 65%),
+    linear-gradient(#F7FBFF, #EAF4FF);
+  background-size:
+    40px 40px,
+    40px 40px,
+    auto,
+    auto,
+    auto,
+    auto;
+  position: relative;
 `;
 
 export const FeatureSection = styled.div`
