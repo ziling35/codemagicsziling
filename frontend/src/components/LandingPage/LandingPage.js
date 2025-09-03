@@ -238,7 +238,7 @@ export const LandingPage = () => {
             <LeftColumn>
               <ActionButton onClick={() => window.open('https://t.me/codemagics', '_blank')} variant="secondary" icon={<TelegramIcon />}>Наш Telegram канал</ActionButton>
               <Title>Увлекательная игра для обучения детей программированию</Title>
-              <Subtitle>От первых строк кода до сложных программ в захватывающем путешествии с волшебством и головоломками — прямо в браузере, без установки и сложных настроек.</Subtitle>
+              <Subtitle>Прямо в браузере — не нужно ничего устанавливать. Обучение с нуля, подходит для детей от 10 лет.</Subtitle>
               <Button
                 disabled={false}
                 shadowColor="#1B4B82"

@@ -87,9 +87,11 @@ export const Title = styled.h1`
 `;
 
 export const Subtitle = styled.p`
+  font-family: 'Montserrat', sans-serif;
   font-size: 20px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
+  line-height: 30px;
+  text-shadow: 0 2px 8px rgba(30, 58, 138, 0.3);
+  color: rgba(255, 255, 255, 1);
   margin: 0;
   margin-bottom: 40px;
   max-width: 600px;
@@ -97,6 +99,7 @@ export const Subtitle = styled.p`
   @media (max-width: 768px) {
     max-width: 100%;
     font-size: 16px;
+    line-height: 22px;
   }
 `;
 
@@ -169,7 +172,7 @@ export const FeatureImage = styled.div`
     max-height: 500px;
     height: auto;
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 10px 16px 12px rgba(0, 0, 0, 0.3);
   }
 
   @media (max-width: 768px) {
@@ -186,13 +189,13 @@ export const FeatureVideo = styled.div`
   align-items: center;
   overflow: hidden;
   border-radius: 16px;
+  box-shadow: 10px 16px 12px rgba(0, 0, 0, 0.3);
 
   video {
     max-width: 100%;
     max-height: 400px;
     height: auto;
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     object-fit: cover;
     transform: scaleX(1.02);
   }
