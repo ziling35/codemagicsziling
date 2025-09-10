@@ -42,6 +42,8 @@ import { useGameData } from '../../hooks/useGameData';
 import { LoginModal } from '../LoginModal/LoginModal';
 import { UnavailableLevelModal } from '../UnavailableLevelModal/UnavailableLevelModal';
 import { useUser } from '../../contexts/UserContext';
+import { wizardsToCells } from '../../utils/wizardZoneUtils';
+import { WizardZoneCell } from '../WizardZoneCell';
 
 const getInitialCodeFromStorage = (gameId, level) =>
   localStorage.getItem(`${STORAGE_KEYS.CODE_PREFIX}${gameId}-${level}`);
@@ -99,7 +101,7 @@ export const Level = () => {
 
   const showLoginModal = process.env.REACT_APP_SHOW_LOGIN_MODAL && !isUserLoading && !isAuthenticated;
   const showAccessModal = false && id > 6 && !!user && !user.hasAccess;
-  const showPreviousLevelsModal = process.env.REACT_APP_SHOW_PREV_LEVEL_MODAL && !showAccessModal && !isUserLoading && !isGameDataLoading && isAuthenticated && completedLevelsCount + 1 < id;
+  const showPreviousLevelsModal = false && !showAccessModal && !isUserLoading && !isGameDataLoading && isAuthenticated && completedLevelsCount + 1 < id;
 
   const hasGuid = (data) =>
     data.instructions || data.example || data.newCommands?.length;
@@ -457,6 +459,8 @@ export const Level = () => {
   const executingLine =
     gameExecution.levelResult.current?.commands[gameExecution.executingCommand.current]?.start.line;
   const isLastLevel = Number(id) === game.levels;
+  const wizards = enemies.filter(enemy => enemy.isWizard && enemy.zone);
+  const wizardZonesCells = wizardsToCells(wizards);
 
   return (
     <Wrapper>
@@ -548,6 +552,8 @@ export const Level = () => {
               {enemies.map((enemy) => (
                 <Enemy
                   key={`${enemy.x}${enemy.y}`}
+                  isWizard={enemy.isWizard}
+                  wizardZone={enemy.zone}
                   x={enemy.x}
                   y={enemy.y}
                   heroX={hero.x}
@@ -603,6 +609,14 @@ export const Level = () => {
                   range={gameExecution.activeFireball.range}
                 />
               )}
+              {wizardZonesCells.length > 0 && wizardZonesCells.map((cell) => (
+                <WizardZoneCell 
+                  key={`wizard-zone-${cell.x}-${cell.y}`} 
+                  x={cell.x} 
+                  y={cell.y} 
+                  isWizardAlive={cell.isWizardAlive} 
+                />
+              ))}
             </MapField>
           </MapWrapper>
         </DragWrapper>

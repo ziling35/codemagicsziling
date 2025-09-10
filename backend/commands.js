@@ -48,6 +48,6 @@ export const isDisabled = {
 
 export const fireballCommands = movingConstants.map(constants => ({
     code: `hero.fireball_${constants[0]}()`,
-    description: `кидает фаерболл ${constants[1]} на дистанцию до 3 клеток. Убивает врагов и активирует рычаги.`,
+    description: `кидает ${constants[1]} огненный шар, который уничтожает врагов`,
     example: `hero.fireball_${constants[0]}()`,
 }));

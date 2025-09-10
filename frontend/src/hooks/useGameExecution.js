@@ -45,6 +45,10 @@ export const useGameExecution = () => {
       case COMMAND_NAMES.ENEMY_ATTACK:
         await handleEnemyAttack(command, updatedLevelData);
         break;
+
+      case COMMAND_NAMES.HERO_ENTERED_WIZARD_ZONE:
+        await handleHeroEnteredWizardZone(command, updatedLevelData);
+        break;
         
       case COMMAND_NAMES.MOVE_UP:
       case COMMAND_NAMES.MOVE_DOWN:
@@ -103,6 +107,14 @@ export const useGameExecution = () => {
     const updatedHeroShift = copy(heroShift.current);
     updatedHeroShift.direction = command.isEnemyToTheLeft ? 'left' : 'right';
     setHeroShift(updatedHeroShift);
+    audioManager.play(SOUND_NAMES.HIT);
+    updatedLevelData.hero.alive = false;
+  };
+
+  /**
+   * Handle hero entered wizard zone
+   */
+  const handleHeroEnteredWizardZone = async (command, updatedLevelData) => {
     audioManager.play(SOUND_NAMES.HIT);
     updatedLevelData.hero.alive = false;
   };

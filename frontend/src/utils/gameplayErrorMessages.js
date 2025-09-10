@@ -9,6 +9,11 @@ export const GAMEPLAY_ERROR_MESSAGES = {
   [GameplayErrorTypes.HERO_KILLED_BY_ENEMY]: {
     value: 'С этим рыцарем надо быть аккуратнее..'
   },
+
+  [GameplayErrorTypes.HERO_ENTERED_WIZARD_ZONE]: {
+    value: 'Злой волшебник заколдовал эту территорию!'
+  },
+
   
   [GameplayErrorTypes.HERO_RAN_IN_ENEMY]: {
     value: 'Я не могу туда идти,\nэтот злой рыцарь меня побьет'

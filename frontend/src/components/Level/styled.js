@@ -98,8 +98,8 @@ export const Lawn = styled.div`
   height: 50px;
   width: 50px;
 
-  ${({ x, y, zIndex }) => css`
-    z-index: ${zIndex};
+  ${({ x, y }) => css`
+    z-index: -1;
     grid-row-start: ${x + 1};
     grid-row-end: ${x + 2};
     grid-column-start: ${y + 1};
@@ -112,8 +112,8 @@ export const Sand = styled.div`
   width: 50px;
   background-color:rgb(202, 166, 127);
 
-  ${({ x, y, zIndex }) => css`
-    z-index: ${zIndex};
+  ${({ x, y }) => css`
+    z-index: -1;
     grid-row-start: ${x + 1};
     grid-row-end: ${x + 2};
     grid-column-start: ${y + 1};

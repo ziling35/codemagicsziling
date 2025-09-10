@@ -98,4 +98,5 @@ export const COMMAND_NAMES = {
   FIREBALL_DOWN: 'fireball_down',
   FIREBALL_LEFT: 'fireball_left',
   FIREBALL_RIGHT: 'fireball_right',
+  HERO_ENTERED_WIZARD_ZONE: 'hero_entered_wizard_zone',
 };

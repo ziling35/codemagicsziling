@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 import { Wrapper, Name, Image } from './styled';
 
-const computeDirection = ({ y, heroY }) => (y >= heroY ? 'left' : 'right');
+const computeDirection = ({ y, heroY, wizardZone }) => {
+  if (wizardZone) {
+    return y > wizardZone.y ? 'left' : 'right';
+  }
+
+  return y >= heroY ? 'left' : 'right';
+}
 
 export const Enemy = ({ 
   x, 
@@ -14,22 +20,28 @@ export const Enemy = ({
   nameHidden, 
   spedUp, 
   isBig,
-  shift
+  shift,
+  isWizard,
+  wizardZone
 }) => {
   const [deathDirection, setDeathDirection] = useState(null);
+  
+  // Определяем тип врага
+  const enemyType = isWizard ? 'wizard' : 'knight';
 
   useEffect(() => {
     if (alive && deathDirection) {
       setDeathDirection(null);
     } else if (!alive) {
-      setDeathDirection(computeDirection({ y, heroY }));
+      setDeathDirection(computeDirection({ y, heroY, wizardZone }));
     }
   }, [alive]);
 
-  const direction = deathDirection || computeDirection({ y, heroY });
+  const direction = deathDirection || computeDirection({ y, heroY, wizardZone });
 
   return (
     <Wrapper 
+      enemyType={enemyType}
       x={x} 
       y={y} 
       heroX={heroX} 
@@ -40,7 +52,7 @@ export const Enemy = ({
       spedUp={spedUp} 
     >
       {!nameHidden && <Name fade={!alive}>{name}</Name>}
-      <Image x={x} y={y} heroX={heroX} heroY={heroY} direction={direction} alive={alive} spedUp={spedUp} />
+      <Image enemyType={enemyType} x={x} y={y} heroX={heroX} heroY={heroY} direction={direction} alive={alive} spedUp={spedUp} />
     </Wrapper>
   );
 };

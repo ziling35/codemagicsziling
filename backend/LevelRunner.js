@@ -329,6 +329,12 @@ export default class LevelRunner {
       this.pushNewCommand(moveCommandName);
       this.incrementAction();
 
+      if (this.isHeroInWizardZone(this.level.hero)) {
+        this.pushNewCommand("hero_entered_wizard_zone");
+        this.gameplayError = { type: GameplayErrorTypes.HERO_ENTERED_WIZARD_ZONE };
+        return;
+      }
+
       if (this.gameplayError)
         return;
 
@@ -420,5 +426,26 @@ export default class LevelRunner {
       return;
 
     return this.level.enemies.find(e => e.alive && arePointsEqual(e, point));
+  }
+
+  isHeroInWizardZone(heroPosition) {
+    if (!this.level.enemies || this.level.enemies.length === 0)
+      return false;
+
+    const wizardsWithZones = this.level.enemies.filter(enemy => 
+      enemy.alive && enemy.isWizard && enemy.zone
+    );
+
+    for (const wizard of wizardsWithZones) {
+      const zone = wizard.zone;
+      if (heroPosition.x >= zone.x && 
+          heroPosition.x < zone.x + zone.width &&
+          heroPosition.y >= zone.y && 
+          heroPosition.y < zone.y + zone.height) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

@@ -49,7 +49,7 @@ export const LEVEL_POSITIONS = [
   { level: 20, bottom: 22, left: 60, scaleX: 1 },
   { level: 21, bottom: 27, left: 64, scaleX: -1 },
   { level: 22, bottom: 34, left: 60, scaleX: 1 },
-  // { level: 23, bottom: 40, left: 65 },
+  { level: 23, bottom: 40, left: 65 },
 ];
 
 export const ROUTES = {

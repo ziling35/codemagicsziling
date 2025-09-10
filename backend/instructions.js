@@ -1,4 +1,4 @@
-import { shortMovingCommands, longMovingCommands, switchCommand, attackCommand, findNearestEnemy, hasEnemyAround, isDisabled } from "./commands.js"
+import { shortMovingCommands, longMovingCommands, switchCommand, attackCommand, findNearestEnemy, hasEnemyAround, fireballCommands } from "./commands.js"
 
 export const instructions = {
   ['forest']: {
@@ -107,7 +107,7 @@ hero.switch("Мост") # снова открыть мост
       prevCommands: longMovingCommands.concat([ switchCommand, attackCommand ]),
     },
     [16]: {
-      instructions: 'Некоторые методы в программировании не только выполняют действия, но и возвращают значения. Метод `find_nearest_enemy` как раз такой — он возвращает имя ближайшего к тебе врага. С его помощью ты можешь победить врагов, которые скрывают свои имена.\n\n'
+      instructions: 'Некоторые методы в программировании не только выполняют действия, но и отдают результат. Метод `find_nearest_enemy` как раз такой — он возвращает имя ближайшего к тебе врага. С его помощью ты можешь победить врагов, которые скрывают свои имена.\n\n'
       + 'Важно: в переменные можно сохранять не только готовые значения, но и результат выполнения методов. Это очень удобно, чтобы потом использовать эти результаты в других командах.\n\n'
       + 'Попробуй сохранить в переменную имя врага, которое вернёт `find_nearest_enemy`, а затем атаковать его:',
       example: `enemy1 = hero.find_nearest_enemy()\nhero.attack(enemy1)\n\nenemy2 = hero.find_nearest_enemy()\nhero.attack(enemy2)`,
@@ -115,11 +115,17 @@ hero.switch("Мост") # снова открыть мост
       prevCommands: longMovingCommands.concat([ switchCommand, attackCommand ]),
     },
     [17]: {
+      instructions: 'Враги вызвали тёмных волшебников! Они могут заколдовать клетки уровня так, чтобы герой не смог в них пройти. Чтобы разрушить колдовство волшебника, надо его уничтожить.\n\n' +
+      'Но есть одна проблема: эти волшебники любят находиться в местах, в которые герой не может пройти. В таких случаях тебе нужно использовать новое заклинание для дистанционной атаки — огненный шар.',
+      newCommands: fireballCommands,
+      prevCommands: longMovingCommands.concat([ switchCommand, attackCommand, findNearestEnemy ]),
+    },
+    [18]: {
       instructions: 'Ты уже многое умеешь! Используй все свои знания, чтобы пройти этот уровень.',
       newCommands: [],
       prevCommands: longMovingCommands.concat([ switchCommand, attackCommand, findNearestEnemy ]),
     },
-    [18]: {
+    [19]: {
       instructions: 'Иногда в программе нужно несколько раз повторить одни и те же действия. Чтобы не писать одинаковый код несколько раз, программисты используют циклы.\n\n' +
       'На этом уровне ты научишься использовать бесконечный цикл `while True`, чтобы герой мог выполнять действия снова и снова, пока не достигнет финиша.\n\n' +
       'Обрати внимание на то, что после `while True` нужно поставить двоеточие `:`, а строчки кода внутри цикла должны начинаться с отступа в 4 пробела. Это показывает, что они относятся к циклу и будут выполняться много раз.',
@@ -131,12 +137,12 @@ while True: # бесконечно повторять
       newCommands: [],
       prevCommands: longMovingCommands,
     },
-    [19]: {
+    [20]: {
       instructions: 'Здорово, правда? А сможешь пройти этот уровень, используя только цикл?',
       newCommands: [],
       prevCommands: longMovingCommands,
     },
-    [20]: {
+    [21]: {
       instructions: 'На этом уровне тебе нужно будет не только передвигаться в цикле, но и атаковать врагов, встретившихся на пути до финиша.\n\n' +
       'Но сначала подбери алмаз на другом острове — напиши код для этого до цикла.\n\n' +
       'Не забудь, что после `while True` нужно поставить двоеточие `:`, а строчки кода внутри цикла должны начинаться с отступа в 4 пробела.',
@@ -146,7 +152,7 @@ while True: # бесконечно повторять
       newCommands: [],
       prevCommands: [ switchCommand, findNearestEnemy, attackCommand ].concat(longMovingCommands),
     },
-    [21]: {
+    [22]: {
       instructions: 'На этом уровне тебе снова нужно использовать цикл `while True`, но теперь не при каждом повторе цикла тебе будет встречаться враг! Тебе нужно будет проверять это с помощью нового метода `has_enemy_around()`.\n\n' +
       'Метод `has_enemy_around()` проверяет все клетки вокруг героя и говорит, есть ли на какой-то из них враг, или нет.\n\n' +
       'А чтобы выполнять действия только при определённом условии, в программировании используют специальное слово `if` (в переводе с английского — «если»).\n\n' +
@@ -163,7 +169,7 @@ while True: # бесконечно повторять
       newCommands: [ hasEnemyAround ],
       prevCommands: [ findNearestEnemy, attackCommand ].concat(longMovingCommands),
     },
-    [22]: {
+    [23]: {
       instructions: 'Отлично! Продолжай в том же духе. Используй цикл `while True` и конструкцию `if` с методом `has_enemy_around()`, чтобы пройти этот уровень.\n\n'
       + 'Дополнительные очки, если сможешь собрать все алмазы!',
       newCommands: [],

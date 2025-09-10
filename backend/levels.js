@@ -315,7 +315,7 @@ export const levels = {
       ],
       enemies: [
         { x: 0, y: 1, alive: true, name: "John" },
-        { x: 4, y: 5, alive: true, name: "Greg" },
+        { x: 4, y: 5, alive: true, name: "Greg", isWizard: true, zone: { x: 0, y: 0, width: 3, height: 3 } },
       ],
       goals: [
         { type: 'finish', name: 'Добраться до финиша', heroText: 'Проведи меня до финиша', required: true },
@@ -573,6 +573,35 @@ export const levels = {
 
     [17]: {
       height: 7,
+      width: 8,
+      grid: [
+        ["lawn","sand","lawn","lawn","watert","watert","lawn","lawn",],
+        ["sand","sand","lawn","watert","water","tree","lawn","lawn",],
+        ["rock","watert","watert","water","water","lawn","lawn","lawn",],
+        ["watert","water","water","water","water","lawn","sand","sand",],
+        ["water","lawn","lawn","tree","water","lawn","sand","rock",],
+        ["lawn","sand","sand","lawn","lawn","sand","sand","watert",],
+        ["tree","sand","rock","lawn","lawn","sand","watert","water",],
+      ],
+      hero: { x: 5, y: 6 },
+      finish: { x: 0, y: 6 },
+      gems: [
+      ],
+      enemies: [
+        { x: 1, y: 1, alive: true, name: "wizard1", hidden: true, isWizard: true, zone: { x: 1, y: 5, width: 3, height: 3 } },
+        { x: 1, y: 6, alive: true, name: "hidden1", hidden: true },
+      ],
+      goals: [
+        { type: 'finish', name: 'Добраться до финиша', heroText: null, required: true },
+      ],  
+      levers: [
+      ],
+      bridges: [
+      ],
+    },
+
+    [18]: {
+      height: 7,
       width: 9,
       grid: [
         ["rock","sand","rock","lawn","watert","watert","lawn","lawn","lawn",],
@@ -621,7 +650,7 @@ export const levels = {
       onlyVariablesInAttack: true,
     },
 
-    [18]: {
+    [19]: {
       height: 5,
       width: 9,
       grid: [
@@ -648,7 +677,7 @@ export const levels = {
       isWhileTrue: true,
     },
 
-    [19]: {
+    [20]: {
       height: 9,
       width: 5,
       grid: [
@@ -680,7 +709,7 @@ export const levels = {
       isWhileTrue: true,
     },
 
-    [20]: {
+    [21]: {
       height: 9,
       width: 9,
       grid: [
@@ -730,7 +759,7 @@ export const levels = {
       isWhileTrue: true,
     },
 
-    [21]: {
+    [22]: {
       height: 9,
       width: 9,
       grid: [
@@ -763,7 +792,7 @@ export const levels = {
       isWhileTrue: true,
     },
 
-    [22]: {
+    [23]: {
       height: 6,
       width: 13,
       grid: [

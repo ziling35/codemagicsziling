@@ -12,4 +12,5 @@ export default class GameplayErrorTypes {
     static HERO_KILLED_BY_ENEMY = 'hero_killed_by_enemy';
     static INFINITE_LOOP = 'infinite_loop';
     static ENEMY_IS_BIG = 'enemy_is_big';
+    static HERO_ENTERED_WIZARD_ZONE = 'hero_entered_wizard_zone';
 }
