@@ -14,7 +14,10 @@ export const GAMEPLAY_ERROR_MESSAGES = {
     value: 'Злой волшебник заколдовал эту территорию!'
   },
 
-  
+  [GameplayErrorTypes.NO_FIREBALLS]: {
+    value: 'У меня не осталось сил для огненных шаров!'
+  },
+
   [GameplayErrorTypes.HERO_RAN_IN_ENEMY]: {
     value: 'Я не могу туда идти,\nэтот злой рыцарь меня побьет'
   },

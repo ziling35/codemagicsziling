@@ -44,6 +44,7 @@ import { UnavailableLevelModal } from '../UnavailableLevelModal/UnavailableLevel
 import { useUser } from '../../contexts/UserContext';
 import { wizardsToCells } from '../../utils/wizardZoneUtils';
 import { WizardZoneCell } from '../WizardZoneCell';
+import { SpellsCounter } from '../SpellsCounter';
 
 const getInitialCodeFromStorage = (gameId, level) =>
   localStorage.getItem(`${STORAGE_KEYS.CODE_PREFIX}${gameId}-${level}`);
@@ -473,6 +474,10 @@ export const Level = () => {
         forceOpen={gameExecution.forceShowGoals}
         goals={initialLevelData.current.goals}
         goalsResult={gameExecution.levelResult.current?.goals || []}
+      />
+      <SpellsCounter 
+        fireballCount={levelData.current.fireballCount || 0}
+        totalFireballs={initialLevelData.current.fireballCount || 0}
       />
       <MainWrapper>
         <DragWrapper

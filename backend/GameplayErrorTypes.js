@@ -13,4 +13,5 @@ export default class GameplayErrorTypes {
     static INFINITE_LOOP = 'infinite_loop';
     static ENEMY_IS_BIG = 'enemy_is_big';
     static HERO_ENTERED_WIZARD_ZONE = 'hero_entered_wizard_zone';
+    static NO_FIREBALLS = 'no_fireballs';
 }

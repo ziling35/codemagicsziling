@@ -148,6 +148,11 @@ export default class LevelRunner {
     },
 
     fireball: (direction, commandName) => {
+      if (this.level.fireballCount === 0) {
+        this.gameplayError = { type: GameplayErrorTypes.NO_FIREBALLS };
+        return;
+      }
+
       let hitTarget = null;
       let finalPosition = null;
 
@@ -176,6 +181,7 @@ export default class LevelRunner {
       }
 
       const range = getDistance(this.level.hero, finalPosition);
+      this.level.fireballCount -= 1;
       this.pushNewCommand(commandName, {
         direction,
         startPosition: { x: this.level.hero.x, y: this.level.hero.y },

@@ -1,0 +1,1 @@
+export { SpellsCounter } from './SpellsCounter';

@@ -328,6 +328,7 @@ export const useGameExecution = () => {
     await delay(GAME_CONFIG.FIREBALL_ONE_CELL_DELAY * command.range);
     setActiveFireball(null);
 
+    updatedLevelData.fireballCount -= 1;
     
     if (command.hitTarget && command.hitTarget.type === 'enemy') {
       const updatedEnemies = copy(updatedLevelData.enemies);

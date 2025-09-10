@@ -592,12 +592,14 @@ export const levels = {
         { x: 1, y: 6, alive: true, name: "hidden1", hidden: true },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: null, required: true },
+        { type: 'finish', name: 'Добраться до финиша', heroText: 'Давай поджарим этого волшебника\nи освободим себе путь', required: true },
       ],  
       levers: [
       ],
       bridges: [
       ],
+      onlyVariablesInAttack: true,
+      fireballCount: 1,
     },
 
     [18]: {
