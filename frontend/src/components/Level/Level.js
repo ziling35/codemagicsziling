@@ -102,7 +102,7 @@ export const Level = () => {
 
   const showLoginModal = process.env.REACT_APP_SHOW_LOGIN_MODAL && !isUserLoading && !isAuthenticated;
   const showAccessModal = false && id > 6 && !!user && !user.hasAccess;
-  const showPreviousLevelsModal = false && !showAccessModal && !isUserLoading && !isGameDataLoading && isAuthenticated && completedLevelsCount + 1 < id;
+  const showPreviousLevelsModal = !showAccessModal && !isUserLoading && !isGameDataLoading && isAuthenticated && completedLevelsCount + 1 < id;
 
   const hasGuid = (data) =>
     data.instructions || data.example || data.newCommands?.length;
