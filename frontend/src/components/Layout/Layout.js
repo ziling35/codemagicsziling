@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from '../Header/Header';
 import Cookies from 'js-cookie';
@@ -8,7 +9,8 @@ import { LoginModal } from '../LoginModal/LoginModal';
 const LayoutWrapper = styled.div`
 `
 
-export const Layout = ({ children, isHeaderTransparent = false, showAutoLogin = true }) => {
+export const Layout = ({ children, isHeaderTransparent = false, showAutoLogin = true, isGamePage = false }) => {
+  const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   useEffect(() => {
@@ -38,7 +40,11 @@ export const Layout = ({ children, isHeaderTransparent = false, showAutoLogin = 
 
   return (
     <LayoutWrapper>
-      <Header onLoginClick={() => setShowLoginModal(true)} isTransparent={isHeaderTransparent} />
+      <Header
+        rightButtonText={isGamePage ? 'Войти' : 'Начать программировать'}
+        onRightButtonClick={isGamePage ? () => setShowLoginModal(true) : () => navigate('/game')}
+        isTransparent={isHeaderTransparent}
+      />
       {children}
       {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)}/>}
     </LayoutWrapper>

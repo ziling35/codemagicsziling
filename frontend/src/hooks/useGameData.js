@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { axios } from '../api/axios';
-import { API_ENDPOINTS, STORAGE_KEYS } from '../constants/game';
+import { API_ENDPOINTS } from '../constants/game';
+import { STORAGE_KEYS } from '../constants/gameConstants';
 import { useUser } from '../contexts/UserContext';
 
 export const useGameData = () => {
@@ -21,7 +22,7 @@ export const useGameData = () => {
       }
     } catch (err) {
       if (err.response?.status === 401) {
-        const currentAnonymousLevel = localStorage.getItem(STORAGE_KEYS.currentLevel) ?? 0;
+        const currentAnonymousLevel = localStorage.getItem(STORAGE_KEYS.CURRENT_LEVEL) ?? 0;
         const anonymousLevels = Array.from(
           { length: parseInt(currentAnonymousLevel, 10) }, 
           (_, i) => ({ levelId: i + 1 })

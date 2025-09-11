@@ -3,6 +3,7 @@ export const MODULE_CONFIG = {
   title: 'Лесной путь',
   description: 'Изучите основы программирования в увлекательном путешествии через лес',
   totalLevels: 22,
+  freeLevels: 3,
   tags: [
     'знакомство с платформой',
     'основы синтаксиса',

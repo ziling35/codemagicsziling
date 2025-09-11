@@ -48,7 +48,7 @@ export const MainPage = () => {
 
   if (isUserLoading || isGameDataLoading) {
     return (
-      <Layout>
+      <Layout isGamePage showAutoLogin={false}>
         <Container>
           <LoadingState message="Загрузка игровых данных..." />
         </Container>
@@ -58,7 +58,7 @@ export const MainPage = () => {
 
   if (error) {
     return (
-      <Layout>
+      <Layout isGamePage showAutoLogin={false}>
         <Container>
           <ErrorState 
             message={error}
@@ -70,7 +70,7 @@ export const MainPage = () => {
   }
 
   return (
-    <Layout>
+    <Layout isGamePage showAutoLogin={false}>
       <Container>
         <ModuleCard
           completedLevelsCount={completedLevelsCount}

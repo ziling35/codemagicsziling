@@ -22,6 +22,8 @@ import { axios } from '../../api/axios';
 
 import { audioManager, SOUND_NAMES } from '../../utils/audioManager';
 import { GAME_CONFIG, STORAGE_KEYS, API_ENDPOINTS } from '../../constants/gameConstants';
+import { MODULE_CONFIG } from '../MainPage/constants';
+import { saveLocalProgress } from '../../utils/progressSync';
 import { useGameExecution } from '../../hooks/useGameExecution';
 import { useRefState } from '../../hooks/useRefState';
 import { Controls } from '../Controls/Controls';
@@ -100,7 +102,7 @@ export const Level = () => {
 
   const { user, isLoading: isUserLoading, isAuthenticated } = useUser();
 
-  const showLoginModal = process.env.REACT_APP_SHOW_LOGIN_MODAL && !isUserLoading && !isAuthenticated;
+  const showLoginModal = id > MODULE_CONFIG.freeLevels && process.env.REACT_APP_SHOW_LOGIN_MODAL && !isUserLoading && !isAuthenticated;
   const showAccessModal = false && id > 6 && !!user && !user.hasAccess;
   const showPreviousLevelsModal = !showAccessModal && !isUserLoading && !isGameDataLoading && isAuthenticated && completedLevelsCount + 1 < id;
 
@@ -234,7 +236,10 @@ export const Level = () => {
           setIsScoreOpen(true);
 
           axios.post(API_ENDPOINTS.LEVEL_COMPLETE(gameId, id), { score: gameExecution.levelResult.current.score }, { withCredentials: true })
-            .catch(_ => localStorage.setItem(STORAGE_KEYS.CURRENT_LEVEL, Math.max(localStorage.getItem(STORAGE_KEYS.CURRENT_LEVEL), id)));
+            .catch(_ => {
+              // Сохраняем прогресс локально если не удалось отправить на сервер
+              saveLocalProgress(parseInt(id, 10));
+            });
         }
       }
     }

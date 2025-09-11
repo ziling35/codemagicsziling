@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../constants';
+import { ROUTES, MODULE_CONFIG } from '../constants';
 
 export const useNavigation = (isAuthenticated) => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ export const useNavigation = (isAuthenticated) => {
   const handleLevelClick = useCallback((level) => {
     const levelPath = ROUTES.getLevelPath(level);
     
-    if (isAuthenticated) {
+    if (isAuthenticated || level <= MODULE_CONFIG.freeLevels) {
       navigate(levelPath);
     } else {
       setPendingNavigation(levelPath);

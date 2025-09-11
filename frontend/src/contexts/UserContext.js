@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { axios } from '../api/axios';
 import { STORAGE_KEYS } from '../constants/game';
+import { syncLocalProgressWithServer } from '../utils/progressSync';
 
 const UserContext = createContext();
 
@@ -18,7 +19,7 @@ export const UserProvider = ({ children }) => {
       if (isAuthenticated()) {
         try {
           const response = await axios.get('/user', { withCredentials: true });
-          setUser(response.data);
+          await updateUserWithSync(response.data);
         } catch (error) {
           setUser(null);
         }
@@ -36,10 +37,30 @@ export const UserProvider = ({ children }) => {
     setUser(null);
   };
 
+  const updateUserWithSync = async (newUser) => {
+    // Если пользователь входит в систему впервые (или заново)
+    if (newUser && !user) {
+      try {
+        // Синхронизируем локальный прогресс с сервером
+        const syncResult = await syncLocalProgressWithServer();
+        console.log('Результат синхронизации прогресса:', syncResult);
+        
+        if (syncResult.success && syncResult.syncedLevels.length > 0) {
+          console.log(`Синхронизировано ${syncResult.syncedLevels.length} уровней`);
+        }
+      } catch (error) {
+        console.error('Ошибка при синхронизации прогресса:', error);
+      }
+    }
+    
+    setUser(newUser);
+  };
+
   return (
     <UserContext.Provider value={{ 
       user, 
       setUser, 
+      updateUserWithSync,
       logout,
       isLoading,
       isAuthenticated: isAuthenticated()

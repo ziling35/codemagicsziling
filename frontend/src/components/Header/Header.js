@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useUser } from '../../contexts/UserContext';
 import { ActionButton } from '../ActionButton/ActionButton';
 
-export const Header = ({ onLoginClick, isTransparent }) => {
+export const Header = ({ rightButtonText, onRightButtonClick,  isTransparent }) => {
   const { user, logout } = useUser();
 
   return (
@@ -17,8 +17,8 @@ export const Header = ({ onLoginClick, isTransparent }) => {
         <MiniProfile user={user} onLogout={logout} />
       )}
       {!user && (
-        <ActionButton onClick={onLoginClick}>
-          Начать программировать
+        <ActionButton onClick={onRightButtonClick}>
+          {rightButtonText}
         </ActionButton>
       )}
     </HeaderContent>

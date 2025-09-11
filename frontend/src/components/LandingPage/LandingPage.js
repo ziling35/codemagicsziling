@@ -131,11 +131,7 @@ export const LandingPage = () => {
   const [selectedModule, setSelectedModule] = React.useState(1);
 
   const handleContinuePlaying = () => {
-    if (isAuthenticated) {
-      navigate('/game');
-    } else {
-      setShowLoginModal(true);
-    }
+    navigate('/game');
   };
 
   const handleLoginSuccess = () => {
@@ -196,7 +192,7 @@ export const LandingPage = () => {
   const selectedModuleData = modules.find(module => module.id === selectedModule);
 
   return (
-    <Layout isHeaderTransparent showAutoLogin={true}>
+    <Layout isHeaderTransparent>
       <LandingContainer>
         <HeroContainer>
           <CloudsContainer>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { axios } from '../../api/axios';
+import { useUser } from '../../contexts/UserContext';
 import { Modal, Wrapper, Top, CloseButton, Title, YaLoginButton } from './styled';
 
 export const LoginModal = ({ onClose, onSuccess, title = 'Вход', canClose = true }) => {
   const [isClosing, setIsClosing] = useState(false);
+  const { updateUserWithSync } = useUser();
 
   const handleClose = () => {
     setIsClosing(true);
@@ -36,7 +38,12 @@ export const LoginModal = ({ onClose, onSuccess, title = 'Вход', canClose = 
       .then(data => {
         Cookies.set('yaToken', data.access_token, { path: '/', domain: '.codemagics.ru', secure: true, sameSite: 'Lax', expires: Math.floor(Number(data.expires_in) / 86400) })
         axios.post(`/user`, {}, { withCredentials: true })
-          .then(() => {
+          .then(async (response) => {
+            // Используем updateUserWithSync для синхронизации локального прогресса
+            if (response.data) {
+              await updateUserWithSync(response.data);
+            }
+            
             if (onSuccess) {
               onSuccess();
             } else {
