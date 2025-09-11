@@ -39,41 +39,46 @@ export const syncLocalProgressWithServer = async () => {
       return { success: true, syncedLevels: [] };
     }
     
+    console.log('Найден локальный прогресс:', completedLevels);
     
-    // Отправляем каждый завершенный уровень на сервер
-    const syncPromises = completedLevels.map(level =>
-      axios.post(`/forest/level/${level}/complete`, { 
-        score: 3, // Стандартный балл для синхронизированных уровней
-        fromLocalSync: true // Флаг, что это синхронизация локального прогресса
-      }, { 
-        withCredentials: true 
-      }).catch(error => {
-        console.warn(`Не удалось синхронизировать уровень ${level}:`, error);
-        return null;
-      })
-    );
+    // Формируем массив уровней для синхронизации
+    const levelsToSync = completedLevels.map(levelId => ({
+      levelId,
+      score: 3 // Стандартный балл для синхронизированных уровней
+    }));
     
-    const results = await Promise.all(syncPromises);
-    const syncedLevels = results
-      .map((result, index) => result ? completedLevels[index] : null)
-      .filter(level => level !== null);
+    // Отправляем один запрос для синхронизации всех уровней
+    const response = await axios.post('/user/forest/levels/sync', {
+      levels: levelsToSync
+    }, { 
+      withCredentials: true 
+    });
     
-    // Очищаем локальный прогресс после успешной синхронизации
-    if (syncedLevels.length > 0) {
+    if (response.data && response.data.success) {
+      console.log('Успешно синхронизировано уровней:', response.data.syncedCount);
+      
+      // Очищаем локальный прогресс после успешной синхронизации
       localStorage.removeItem(STORAGE_KEYS.CURRENT_LEVEL);
+      
+      return {
+        success: true,
+        syncedLevels: completedLevels,
+        failedLevels: []
+      };
     }
     
     return {
-      success: true,
-      syncedLevels,
-      failedLevels: completedLevels.filter(level => !syncedLevels.includes(level))
+      success: false,
+      error: 'Неожиданный ответ сервера'
     };
     
   } catch (error) {
     console.error('Ошибка синхронизации прогресса:', error);
     return {
       success: false,
-      error: error.message
+      error: error.message,
+      syncedLevels: [],
+      failedLevels: getLocalProgress()
     };
   }
 };

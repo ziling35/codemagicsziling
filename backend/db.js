@@ -78,4 +78,54 @@ export default class Database {
 
     this.db.close();
   }
+
+  async syncUserLevels(userId, levels) {
+    this.db = await open({ filename: dbFilename, driver: sqlite3.Database });
+    
+    try {
+      await this.db.run('BEGIN TRANSACTION');
+      
+      for (const level of levels) {
+        const { levelId, score } = level;
+        
+        const existingUserLevel = await this.db.get(
+          "SELECT * FROM user_level WHERE userId = $userId AND levelId = $levelId", 
+          {
+            $userId: userId,
+            $levelId: levelId,
+          }
+        );
+        
+        if (existingUserLevel) {
+          if (score > existingUserLevel.score) {
+            await this.db.run(
+              "UPDATE user_level SET score = $score WHERE userId = $userId AND levelId = $levelId", 
+              {
+                $userId: userId,
+                $levelId: levelId,
+                $score: score
+              }
+            );
+          }
+        } else {
+          await this.db.run(
+            "INSERT INTO user_level(userId, levelId, score) VALUES($userId, $levelId, $score)", 
+            {
+              $userId: userId,
+              $levelId: levelId,
+              $score: score
+            }
+          );
+        }
+      }
+      
+      await this.db.run('COMMIT');
+      return { success: true, syncedCount: levels.length };
+    } catch (error) {
+      await this.db.run('ROLLBACK');
+      throw error;
+    } finally {
+      this.db.close();
+    }
+  }
 }

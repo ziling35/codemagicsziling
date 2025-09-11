@@ -233,11 +233,9 @@ export const Level = () => {
           setIsGuideOpen(false);
           setIsScoreOpen(true);
 
-          axios.post(API_ENDPOINTS.LEVEL_COMPLETE(gameId, id), { score: gameExecution.levelResult.current.score }, { withCredentials: true })
-            .catch(_ => {
-              // Сохраняем прогресс локально если не удалось отправить на сервер
-              saveLocalProgress(parseInt(id, 10));
-            });
+          if (!isAuthenticated) {
+            saveLocalProgress(parseInt(id, 10));
+          }
         }
       }
     }
@@ -268,6 +266,8 @@ export const Level = () => {
     try {
       const { data } = await axios.post(API_ENDPOINTS.LEVEL_RUN(gameId, id), {
         code: code.current,
+      }, {
+        withCredentials: true,
       });
 
       gameExecution.setLevelResult(data);

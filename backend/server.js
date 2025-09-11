@@ -40,7 +40,7 @@ app.get('/:game/level/:id/startingCode', (req, res) => {
   res.send(JSON.stringify(startingCode[req.params.game][req.params.id]));
 })
 
-app.post('/:game/level/:id/run', (req, res) => {
+app.post('/:game/level/:id/run', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   const level = levels[req.params.game][req.params.id];
@@ -59,6 +59,30 @@ app.post('/:game/level/:id/run', (req, res) => {
     res.statusCode = 400;
     res.send(JSON.stringify(result));
     return;
+  }
+
+  if (result.score > 0 && req.cookies.yaToken) {
+    try {
+      const userManager = new UserManager();
+      const user = await userManager.getUser(req.cookies.yaToken);
+      
+      if (user) {
+        const db = new Database();
+        const levelId = req.params.id;
+        const levelScore = result.score;
+        
+        const existingUserLevel = await db.getUserLevel(user.id, levelId);
+        if (existingUserLevel) {
+          if (levelScore > existingUserLevel.score) {
+            await db.updateUserLevel(user.id, levelId, levelScore);
+          }
+        } else {
+          await db.addUserLevel(user.id, levelId, levelScore);
+        }
+      }
+    } catch (error) {
+      console.error('Ошибка записи прогресса:', error);
+    }
   }
 
   res.send(JSON.stringify(result));
@@ -99,36 +123,6 @@ app.post('/user', async (req, res) => {
   res.sendStatus(401);
 })
 
-app.post('/:game/level/:levelId/complete', async (req, res) => {
-  if (!req.cookies.yaToken) {
-    res.sendStatus(401);
-    return;
-  }
-
-  const userManager = new UserManager();
-  const user = await userManager.getUser(req.cookies.yaToken);
-  if (!user) {
-    res.sendStatus(401);
-    return;
-  }
-
-  const levelId = req.params.levelId;
-  const levelScore = req.body.score;
-
-  const db = new Database();
-
-  const existingUserLevel = await db.getUserLevel(user.id, levelId);
-  if (existingUserLevel) {
-    if (levelScore > existingUserLevel.stars)
-      await db.updateUserLevel(user.id, levelId, levelScore);
-
-    res.sendStatus(200);
-    return;
-  }
-  
-  await db.addUserLevel(user.id, levelId, levelScore);
-})
-
 app.get('/user/:game/levels', async (req, res) => {
   if (!req.cookies.yaToken) {
     res.sendStatus(401);
@@ -147,6 +141,39 @@ app.get('/user/:game/levels', async (req, res) => {
 
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(allUserLevels));
+})
+
+app.post('/user/:game/levels/sync', async (req, res) => {
+  if (!req.cookies.yaToken) {
+    res.sendStatus(401);
+    return;
+  }
+
+  const userManager = new UserManager();
+  const user = await userManager.getUser(req.cookies.yaToken);
+  if (!user) {
+    res.sendStatus(401);
+    return;
+  }
+
+  const levels = req.body.levels;
+  if (!levels || !Array.isArray(levels)) {
+    res.status(400);
+    res.send(JSON.stringify({ error: 'Levels array is required' }));
+    return;
+  }
+
+  try {
+    const db = new Database();
+    const result = await db.syncUserLevels(user.id, levels);
+    
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(result));
+  } catch (error) {
+    console.error('Ошибка синхронизации уровней:', error);
+    res.status(500);
+    res.send(JSON.stringify({ error: 'Internal server error' }));
+  }
 })
 
 const server = createServer(app);
