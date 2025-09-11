@@ -663,7 +663,7 @@ export const Level = () => {
           onClose={closeScore}
         />
       )}
-      {showLoginModal && <LoginModal title='Войдите, чтобы начать' canClose={false} />}
+      {showLoginModal && <LoginModal title='Войдите, чтобы продолжить игру' canClose={false} />}
       {showPreviousLevelsModal && <UnavailableLevelModal />}
       {showAccessModal && <UnavailableLevelModal dontHaveAccess />}
     </Wrapper>
