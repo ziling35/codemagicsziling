@@ -315,7 +315,7 @@ export const levels = {
       ],
       enemies: [
         { x: 0, y: 1, alive: true, name: "John" },
-        { x: 4, y: 5, alive: true, name: "Greg", isWizard: true, zone: { x: 0, y: 0, width: 3, height: 3 } },
+        { x: 4, y: 5, alive: true, name: "Greg" },
       ],
       goals: [
         { type: 'finish', name: 'Добраться до финиша', heroText: 'Проведи меня до финиша', required: true },
