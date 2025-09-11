@@ -76,10 +76,8 @@ export const Level = () => {
   if (id > GAME_CONFIG.LEVELS.MAX_LEVEL)
     return <>Уровень не найден</>;
 
-  // Game execution state and logic
   const gameExecution = useGameExecution();
 
-  // Level and UI state
   const [game, setGame] = useState(null);
   const [initialLevelData, setInitialLevelData] = useRefState(null);
   const [levelData, setLevelData] = useRefState(null);
@@ -102,9 +100,9 @@ export const Level = () => {
 
   const { user, isLoading: isUserLoading, isAuthenticated } = useUser();
 
-  const showLoginModal = id > MODULE_CONFIG.freeLevels && process.env.REACT_APP_SHOW_LOGIN_MODAL && !isUserLoading && !isAuthenticated;
+  const showLoginModal = id > MODULE_CONFIG.freeLevels && process.env.REACT_APP_SHOW_LOGIN_MODAL === 'true' && !isUserLoading && !isAuthenticated;
   const showAccessModal = false && id > 6 && !!user && !user.hasAccess;
-  const showPreviousLevelsModal = !showAccessModal && !isUserLoading && !isGameDataLoading && isAuthenticated && completedLevelsCount + 1 < id;
+  const showPreviousLevelsModal = process.env.REACT_APP_SHOW_PREV_LEVEL_MODAL === 'true' && !showAccessModal && !isUserLoading && !isGameDataLoading && isAuthenticated && completedLevelsCount + 1 < id;
 
   const hasGuid = (data) =>
     data.instructions || data.example || data.newCommands?.length;
