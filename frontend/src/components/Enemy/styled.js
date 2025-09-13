@@ -103,6 +103,57 @@ const wizardSpellcastingLeftAnimation = keyframes`
   }
 `;
 
+// Анимация красного свечения для рыцаря
+const knightRedGlowAnimation = keyframes`
+  0% {
+    filter: drop-shadow(0 0 8px rgba(220, 20, 60, 0.6)) drop-shadow(0 0 15px rgba(139, 0, 0, 0.4));
+  }
+  25% {
+    filter: drop-shadow(0 0 12px rgba(255, 69, 0, 0.8)) drop-shadow(0 0 20px rgba(139, 0, 0, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.9)) drop-shadow(0 0 25px rgba(139, 0, 0, 0.7));
+  }
+  75% {
+    filter: drop-shadow(0 0 12px rgba(255, 69, 0, 0.8)) drop-shadow(0 0 20px rgba(139, 0, 0, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(220, 20, 60, 0.6)) drop-shadow(0 0 15px rgba(139, 0, 0, 0.4));
+  }
+`;
+
+// Анимация готовности к бою для рыцаря, смотрящего направо
+const knightWarrianceRightAnimation = keyframes`
+  0%, 100% {
+    transform: scaleX(1) translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: scaleX(1) translateY(-1px) rotate(0.5deg);
+  }
+  50% {
+    transform: scaleX(1) translateY(-2px) rotate(0deg);
+  }
+  75% {
+    transform: scaleX(1) translateY(-1px) rotate(-0.5deg);
+  }
+`;
+
+// Анимация готовности к бою для рыцаря, смотрящего налево
+const knightWarrianceLeftAnimation = keyframes`
+  0%, 100% {
+    transform: scaleX(-1) translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: scaleX(-1) translateY(-1px) rotate(-0.5deg);
+  }
+  50% {
+    transform: scaleX(-1) translateY(-2px) rotate(0deg);
+  }
+  75% {
+    transform: scaleX(-1) translateY(-1px) rotate(0.5deg);
+  }
+`;
+
 
 
 export const Wrapper = styled.div`
@@ -173,9 +224,25 @@ export const Image = styled.div`
   opacity: ${({ x, y, heroX, heroY }) =>
     x - heroX === 1 && y === heroY ? 0.7 : 1};
 
-  // Для обычных врагов - стандартный transform
+  // Комбинированная анимация для рыцарей: красное свечение + готовность к бою
+  ${({ enemyType, alive, direction }) =>
+    enemyType === 'knight' && alive &&
+    css`
+      animation: 
+        ${knightRedGlowAnimation} 3s ease-in-out infinite,
+        ${direction === 'right' ? knightWarrianceRightAnimation : knightWarrianceLeftAnimation} 4.5s ease-in-out infinite;
+    `}
+
+  // Для мёртвых рыцарей - стандартный transform
+  ${({ enemyType, alive, direction }) =>
+    enemyType === 'knight' && !alive &&
+    css`
+      transform: scaleX(${direction === 'right' ? 1 : -1});
+    `}
+
+  // Для других врагов - стандартный transform
   ${({ enemyType, direction }) =>
-    enemyType !== 'wizard' &&
+    enemyType !== 'wizard' && enemyType !== 'knight' &&
     css`
       transform: scaleX(${direction === 'right' ? 1 : -1});
     `}
