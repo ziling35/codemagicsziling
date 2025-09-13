@@ -4,7 +4,7 @@ export default class CodeAnalyzer {
     for (let i = 0; i < lines.length; i++) {
       const lineCode = lines[i];
 
-      const noParenthesisMatch = lineCode.match(/^ *(hero\.[^\d\W]\w*)$/i);
+      const noParenthesisMatch = lineCode.match(/(hero\.[^\d\W]\w*)$/i);
       if (noParenthesisMatch) {
         return [
           {
@@ -14,7 +14,7 @@ export default class CodeAnalyzer {
         ];
       }
   
-      const dashMatch = lineCode.match(/(hero.move-down)|(hero.move-up)|(hero.move-left)|(hero.move-right)|(find-nearest-enemy)/);
+      const dashMatch = lineCode.match(/(hero.move-down)|(hero.move-up)|(hero.move-left)|(hero.move-right)|(find-nearest-enemy)|(has-enemy-around)|(fireball-up)|(fireball-down)|(fireball-left)|(fireball-right)/);
       if (dashMatch) {
         return [
           {
@@ -46,6 +46,17 @@ export default class CodeAnalyzer {
             }
           ];
         }
+      }
+
+      const methodWithoutArgumentsMatch = lineCode.match(/hero\.(switch|attack)\(\s*\)/);
+      if (methodWithoutArgumentsMatch) {
+        const methodName = methodWithoutArgumentsMatch[1];
+        return [
+          {
+            message: `Метод \`hero.${methodName}()\` требует аргумент.`,
+            line: i + 1,
+          }
+        ];
       }
     }
 
