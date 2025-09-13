@@ -148,7 +148,7 @@ export default class LevelRunner {
     },
 
     fireball: (direction, commandName) => {
-      if (this.level.fireballCount === 0) {
+      if (this.level.fireballCount === undefined || this.level.fireballCount === 0) {
         this.gameplayError = { type: GameplayErrorTypes.NO_FIREBALLS };
         return;
       }

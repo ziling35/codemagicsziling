@@ -124,7 +124,7 @@ hero.switch("Мост") # снова открыть мост
     [18]: {
       instructions: 'Ты уже многое умеешь! Используй все свои знания, чтобы пройти этот уровень.',
       newCommands: [],
-      prevCommands: longMovingCommands.concat([ switchCommand, attackCommand, findNearestEnemy ]),
+      prevCommands: fireballCommands.concat(longMovingCommands.concat([ switchCommand, attackCommand, findNearestEnemy ])),
     },
     [19]: {
       instructions: 'Иногда в программе нужно несколько раз повторить одни и те же действия. Чтобы не писать одинаковый код несколько раз, программисты используют циклы.\n\n' +
@@ -145,13 +145,13 @@ while True: # бесконечно повторять
     },
     [21]: {
       instructions: 'На этом уровне тебе нужно будет не только передвигаться в цикле, но и атаковать врагов, встретившихся на пути до финиша.\n\n' +
-      'Но сначала подбери алмаз на другом острове — напиши код для этого до цикла.\n\n' +
+      'Но сначала нам надо избавиться от волшебника и очистить себе путь — напиши код для этого до цикла.\n\n' +
       'Не забудь, что после `while True` нужно поставить двоеточие `:`, а строчки кода внутри цикла должны начинаться с отступа в 4 пробела.',
       example: `while True:
     hero.move_right(3)
     hero.move_down(2)`,
       newCommands: [],
-      prevCommands: [ switchCommand, findNearestEnemy, attackCommand ].concat(longMovingCommands),
+      prevCommands: fireballCommands.concat([ switchCommand, findNearestEnemy, attackCommand ]).concat(longMovingCommands),
     },
     [22]: {
       instructions: 'На этом уровне тебе снова нужно использовать цикл `while True`, но теперь не при каждом повторе цикла тебе будет встречаться враг! Тебе нужно будет проверять это с помощью нового метода `has_enemy_around()`.\n\n' +

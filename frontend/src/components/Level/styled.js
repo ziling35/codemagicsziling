@@ -174,7 +174,7 @@ export const Water = styled.div`
   width: 50px;
   height: 50px;
   position: relative;
-  z-index: 0;
+  z-index: -1;
 
   ${({ x, y, isTop }) => css`
     background: url(${isTop ? waterTop : water}) no-repeat center;

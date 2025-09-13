@@ -603,7 +603,7 @@ export const levels = {
     },
 
     [18]: {
-      height: 7,
+      height: 8,
       width: 9,
       grid: [
         ["rock","sand","rock","lawn","watert","watert","lawn","lawn","lawn",],
@@ -611,8 +611,9 @@ export const levels = {
         ["lawn","sand","watert","water","water","water","water","watert","water",],
         ["tree","sand","tree","water","water","water","water","water","water",],
         ["lawn","sand","sand","water","water","water","sand","sand","lawn",],
-        ["rock","lawn","rock","water","water","water","watert","lawn","lawn",],
-        ["lawn","lawn","watert","water","water","water","water","watert","lawn",],
+        ["rock","lawn","rock","water","water","water","watert","rock","lawn",],
+        ["watert","lawn","watert","water","water","water","water","watert","tree",],
+        ["water","lawn","water","water","water","water","water","water","lawn",],
       ],
       hero: { x: 4, y: 7 },
       finish: { x: 0, y: 1 },
@@ -623,10 +624,12 @@ export const levels = {
         { x: 1, y: 7, alive: true, name: "Hidden1", hidden: true },
         { x: 5, y: 1, alive: true, name: "Hidden2", hidden: true },
         { x: 3, y: 1, alive: true, name: "Hidden3", hidden: true },
+        { x: 1, y: 1, alive: true, name: "wizard1", hidden: true, isWizard: true, zone: { x: 3, y: 3, width: 3, height: 3 } },
+        { x: 7, y: 8, alive: true, name: "wizard2", hidden: true, isWizard: true, zone: { x: 1, y: 0, width: 2, height: 3 } },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: null, required: true },
-        { type: 'enemies', name: 'Победить всех врагов', heroText: 'Надо узнать имена этих рыцарей,\nчтобы их прогнать', required: true },
+        { type: 'finish', name: 'Добраться до финиша', heroText: 'Надо узнать имена этих рыцарей,\nчтобы их прогнать', required: true },
+        { type: 'enemies', name: 'Победить всех врагов', heroText: 'А также избавиться от этих волшебников', required: true },
         { type: 'gems', name: 'Собрать все алмазы', heroText: null, required: false },
       ],  
       levers: [
@@ -650,6 +653,7 @@ export const levels = {
         },
       ],
       onlyVariablesInAttack: true,
+      fireballCount: 2,
     },
 
     [19]: {
@@ -717,7 +721,7 @@ export const levels = {
       grid: [
         ["watert","watert","lawn","lawn","rock","watert","watert","watert","watert"],
         ["water","lawn","lawn","lawn","lawn","water","water","water","water"],
-        ["watert","watert","watert","lawn","lawn","water","water","water","water"],
+        ["water","watert","watert","lawn","lawn","water","water","water","water"],
         ["water","water","tree","lawn","lawn","water","water","water","water"],
         ["water","lawn","lawn","lawn","lawn","water","water","sand","lawn"],
         ["water","watert","watert","watert","watert","water","water","sand","lawn"],
@@ -733,6 +737,7 @@ export const levels = {
       enemies: [
         { x: 4, y: 6, alive: true, name: "Hidden1", hidden: true },
         { x: 1, y: 3, alive: true, name: "Hidden2", hidden: true },
+        { x: 4, y: 1, alive: true, name: "wizard1", hidden: true, isWizard: true, zone: { x: 0, y: 2, width: 6, height: 6 } },
       ],
       levers: [
         { x: 8, y: 7, activatesId: 'bridge1', name: "Мост1", enabled: false },
@@ -755,10 +760,11 @@ export const levels = {
       ],
       goals: [
         { type: 'finish', name: 'Добраться до финиша', required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Давай сначала заберём этот алмаз', required: false },
-        { type: 'lines', name: 'Использовать не более 8 строк кода', heroText: 'А потом дойдём до финиша, используя цикл', linesCount: 8, required: true },
+        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Давай сначала очистим себе путь', required: false },
+        { type: 'lines', name: 'Использовать не более 9 строк кода', heroText: 'А потом дойдём до финиша, используя цикл', linesCount: 9, required: true },
       ],
       isWhileTrue: true,
+      fireballCount: 1,
     },
 
     [22]: {
