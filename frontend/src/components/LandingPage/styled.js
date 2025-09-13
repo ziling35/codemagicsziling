@@ -30,6 +30,8 @@ export const HeroSection = styled.div`
 
   @media (max-width: 1340px) {
     width: 100%;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 
   @media (max-width: 768px) {
