@@ -2,7 +2,7 @@ export const MODULE_CONFIG = {
   id: 1,
   title: 'Лесной путь',
   description: 'Изучите основы программирования в увлекательном путешествии через лес',
-  totalLevels: 22,
+  totalLevels: 23,
   freeLevels: 3,
   tags: [
     'знакомство с платформой',

@@ -144,7 +144,7 @@ export const LandingPage = () => {
       id: 1,
       title: 'Модуль 1',
       subtitle: 'Первые шаги',
-      levelsCountSpan: '22 уровня',
+      levelsCountSpan: '23 уровня',
       topics: [
         'Знакомство с платформой',
         'Основы синтаксиса Python',
