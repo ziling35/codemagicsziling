@@ -33,7 +33,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const logout = () => {
-    Cookies.remove(STORAGE_KEYS.authToken, { path: '/', domain: '.codemagics.ru', secure: true, sameSite: 'Lax' });
+    Cookies.remove(STORAGE_KEYS.authToken, { path: '/', domain: process.env.REACT_APP_COOKIE_DOMAIN, secure: true, sameSite: 'Lax' });
     setUser(null);
   };
 
