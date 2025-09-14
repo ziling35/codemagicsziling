@@ -30,7 +30,7 @@ export const useGameData = () => {
         setUserLevels(anonymousLevels);
       } else {
         console.error('Failed to fetch user levels:', err);
-        setError('Не удалось загрузить прогресс пользователя');
+        setError('无法加载用户进度');
       }
     }
   }, []);
@@ -43,7 +43,7 @@ export const useGameData = () => {
       setGame(response.data);
     } catch (err) {
       console.error('Failed to fetch game data:', err);
-      setError('Не удалось загрузить данные игры');
+      setError('无法加载游戏数据');
     }
   }, []);
 

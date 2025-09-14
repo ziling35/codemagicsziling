@@ -196,9 +196,10 @@ export default class LevelRunner {
 
   commands = [];
   
-  constructor(level) {
+  constructor(level, language = 'python') {
     this.initialLevel = structuredClone(level);
     this.level = structuredClone(level);
+    this.language = language;
     this.engine = esper({
       language: 'python'
     });
@@ -244,7 +245,7 @@ export default class LevelRunner {
       }
     } catch (e) {
 
-      let message = ErrorMessageMapper.map(e.message);
+      let message = ErrorMessageMapper.map(e.message, this.language);
       let line = e.loc.line ?? e.loc.start.line;
       return {
         errors: [

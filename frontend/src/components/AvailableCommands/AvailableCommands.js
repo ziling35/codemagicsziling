@@ -39,7 +39,7 @@ export const AvailableCommands = ({ isOpen, newCommands = [], prevCommands = [],
   return (
     <Collapse isOpen={isOpen}>
       <CollapseTitle onClick={onToggle}>
-        Доступные команды
+        可用指令
         <CollapseIcon isOpen={isOpen}>
           <img src={arrow1Icon} alt="arrow" />
         </CollapseIcon>

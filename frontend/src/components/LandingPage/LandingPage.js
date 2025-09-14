@@ -103,21 +103,21 @@ const TelegramPost = () => (
       </TelegramPostHeader>
       <TelegramPostContent>
         <TelegramPostImage>
-          <img src={tgPostImage} alt="ChatGPT vs первый уровень CodeMagics" />
+          <img src={tgPostImage} alt="ChatGPT vs CodeMagics 第一关" />
         </TelegramPostImage>
         <TelegramPostTextContent>
           <TelegramPostTitle>
-            <strong>ChatGPT</strong> vs первый уровень <strong>CodeMagics</strong>
+            <strong>ChatGPT</strong> vs <strong>CodeMagics</strong> 第一关
           </TelegramPostTitle>
           <TelegramPostText>
-            Мы попросили последнюю модель от OpenAI — GPT-5 — пройти первый первый уровень нашего первого модуля. Результаты шокировали...
+            我们请 OpenAI 最新的模型 —— GPT-5 —— 通过我们第一个模块的第一关。结果令人震惊...
           </TelegramPostText>
         </TelegramPostTextContent>
       </TelegramPostContent>
       <TelegramPostFooter>
-        <TelegramPostTime>2 дня назад</TelegramPostTime>
+        <TelegramPostTime>2 天前</TelegramPostTime>
         <TelegramChannelLink href="https://t.me/codemagics/14" target="_blank" rel="noopener noreferrer">
-          Читать в Telegram
+          在 Telegram 中阅读
         </TelegramChannelLink>
       </TelegramPostFooter>
     </TelegramPostWidget>
@@ -142,48 +142,48 @@ export const LandingPage = () => {
   const modules = [
     {
       id: 1,
-      title: 'Модуль 1',
-      subtitle: 'Первые шаги',
-      levelsCountSpan: '23 уровня',
+      title: '模块 1',
+      subtitle: '第一步',
+      levelsCountSpan: '23 个关卡',
       topics: [
-        'Знакомство с платформой',
-        'Основы синтаксиса Python',
-        'Методы',
-        'Аргументы',
-        'Строки',
-        'Комментарии',
-        'Переменные',
-        'Циклы while',
-        'if-выражения'
+        '认识平台',
+        'Python 语法基础',
+        '方法',
+        '参数',
+        '字符串',
+        '注释',
+        '变量',
+        'while 循环',
+        'if 表达式'
       ],
       isReady: true,
     },
     {
       id: 2,
-      title: 'Модуль 2',
-      subtitle: 'Изучаем основы',
-      levelsCountSpan: '25 уровней',
+      title: '模块 2',
+      subtitle: '学习基础',
+      levelsCountSpan: '25 个关卡',
       topics: [
-        'Циклы for',
-        'if-else-выражения',
-        'Типы данных',
-        'Математические операции',
-        'Операторы сравнения',
-        'Логические операторы',
+        'for 循环',
+        'if-else 表达式',
+        '数据类型',
+        '数学运算',
+        '比较运算符',
+        '逻辑运算符',
       ],
       isReady: false,
     },
     {
       id: 3,
-      title: 'Модуль 3',
-      subtitle: 'Расширяем знания',
-      levelsCountSpan: '30 уровней',
+      title: '模块 3',
+      subtitle: '拓展知识',
+      levelsCountSpan: '30 个关卡',
       topics: [
-        'Функции',
-        'Списки',
-        'Кортежи',
-        'Словари',
-        'Рекурсия',
+        '函数',
+        '列表',
+        '元组',
+        '字典',
+        '递归',
       ],
       isReady: false,
     }
@@ -198,7 +198,7 @@ export const LandingPage = () => {
           <CloudsContainer>
             <CloudImage 
               src={cloudImage}
-              alt="облако"
+              alt="云"
               size={250}
               top="2%"
               left="7%"
@@ -209,7 +209,7 @@ export const LandingPage = () => {
             />
             <CloudImage 
               src={cloudImage}
-              alt="облако"
+              alt="云"
               size={350}
               top="12%"
               left="75%"
@@ -220,7 +220,7 @@ export const LandingPage = () => {
             />
             <CloudImage 
               src={cloudImage}
-              alt="облако"
+              alt="云"
               size={500}
               top="50%"
               left="40%"
@@ -232,14 +232,14 @@ export const LandingPage = () => {
           </CloudsContainer>
           <HeroSection>
             <LeftColumn>
-              <ActionButton onClick={() => window.open('https://t.me/codemagics', '_blank')} variant="secondary" icon={<TelegramIcon />}>Наш Telegram канал</ActionButton>
-              <Title>Увлекательная игра для обучения детей программированию</Title>
-              <Subtitle>Прямо в браузере — не нужно ничего устанавливать. Обучение с нуля, подходит для детей от 10 лет.</Subtitle>
+              <ActionButton onClick={() => window.open('https://t.me/codemagics', '_blank')} variant="secondary" icon={<TelegramIcon />}>我们的 Telegram 频道</ActionButton>
+              <Title>用于儿童编程学习的有趣游戏</Title>
+              <Subtitle>在浏览器中直接使用——无需安装。从零开始学习，适合 10 岁以上儿童。</Subtitle>
               <Button
                 disabled={false}
                 shadowColor="#1B4B82"
                 frontColor="#2D7CD4"
-                alt={isAuthenticated ? 'Продолжить обучение' : 'Попробовать бесплатно'}
+                alt={isAuthenticated ? '继续学习' : '免费试用'}
                 onClick={handleContinuePlaying}
                 width={300}
                 height={50}
@@ -258,16 +258,16 @@ export const LandingPage = () => {
         <FeaturesContainer>
           <FeatureSection>
             <FeatureContent>
-              <FeatureTitle>Обучение — в&nbsp;игровом формате</FeatureTitle>
+              <FeatureTitle>学习——以&nbsp;游戏的形式</FeatureTitle>
               <FeatureDescription>
-                Ребёнок пишет код, чтобы управлять персонажем, решать головоломки и собирать награды —
-                учебный процесс превращается в захватывающую игру.
+                孩子通过编写代码来操控角色、解谜并收集奖励——
+                学习过程变成一场精彩的游戏。
               </FeatureDescription>
             </FeatureContent>
             <FeatureVideo>
               <video 
                 src={codemagicsVideo} 
-                alt="интерфейс игры для изучения программирования для детей"
+                alt="少儿编程学习游戏界面"
                 autoPlay 
                 loop 
                 muted
@@ -280,31 +280,31 @@ export const LandingPage = () => {
 
           <FeatureSection>
             <FeatureContent>
-              <FeatureTitle>Идеально для первых шагов в программировании</FeatureTitle>
+              <FeatureTitle>编程入门的理想选择</FeatureTitle>
               <FeatureDescription>
-              Каждый уровень начинается с необходимой теории — мы объясняем новые концепции простым языком и на наглядных примерах.
+              每个关卡都从必要的理论开始——我们用通俗易懂的语言和直观示例讲解新概念。
               </FeatureDescription>
             </FeatureContent>
             <FeatureImage>
-              <img src={theoryImage} alt="пример теории темы для программирования для детей" />
+              <img src={theoryImage} alt="少儿编程理论内容示例" />
             </FeatureImage>
           </FeatureSection>
 
           <FeatureSection>
             <FeatureContent>
-              <FeatureTitle>Python — язык №1</FeatureTitle>
+              <FeatureTitle>Python——No.1 语言</FeatureTitle>
               <FeatureDescription>
-              Мы обучаем самому популярному языку программирования в мире. Питон используют в Яндексе и Google, на нём пишут сайты, игры и искусственный интеллект.
+              我们教授世界上最流行的编程语言。Python 被应用于 Yandex 和 Google，可用于开发网站、游戏和人工智能。
               </FeatureDescription>
             </FeatureContent>
             <FeatureImage>
-              <img src={pythonImage} alt="Python — язык программирования" />
+              <img src={pythonImage} alt="Python 编程语言" />
             </FeatureImage>
           </FeatureSection>
 
           <CurriculumContainer>
             <FeatureTitle>
-              Программа обучения
+              课程大纲
             </FeatureTitle>
             <CurriculumSection>
               <ModulesList>
@@ -343,14 +343,14 @@ export const LandingPage = () => {
                       <>
                         <LevelsCount>{selectedModuleData?.levelsCountSpan}</LevelsCount>
                         <ActionButton onClick={handleContinuePlaying} size="large">
-                          {isAuthenticated ? 'Продолжить обучение' : 'Начать программировать'}
+                          {isAuthenticated ? '继续学习' : '开始编程'}
                         </ActionButton>
                       </>
                     ) : (
                       <>
-                        <LevelsCount>В разработке</LevelsCount>
+                        <LevelsCount>开发中</LevelsCount>
                         <ActionButton onClick={() => window.open('https://t.me/codemagics', '_blank')} size="large">
-                          Следить в Telegram
+                          在 Telegram 关注
                         </ActionButton>
                       </>
                     )}

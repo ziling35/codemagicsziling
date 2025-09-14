@@ -4,7 +4,7 @@ import { axios } from '../../api/axios';
 import { useUser } from '../../contexts/UserContext';
 import { Modal, Wrapper, Top, CloseButton, Title, YaLoginButton } from './styled';
 
-export const LoginModal = ({ onClose, onSuccess, title = 'Вход', canClose = true }) => {
+export const LoginModal = ({ onClose, onSuccess, title = '登录', canClose = true }) => {
   const [isClosing, setIsClosing] = useState(false);
   const { updateUserWithSync } = useUser();
 
@@ -51,7 +51,7 @@ export const LoginModal = ({ onClose, onSuccess, title = 'Вход', canClose = 
             }
           });
       })
-      .catch(error => console.log('Обработка ошибки', error))
+      .catch(error => console.log('错误处理', error))
     }
   }, [onSuccess]);
 

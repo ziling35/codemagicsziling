@@ -241,8 +241,8 @@ export const useGameExecution = () => {
    */
   const handleFindNearestEnemy = async (command) => {
     const message = command.hasEnemy 
-      ? 'find_nearest_enemy: Я тебя вижу!'
-      : 'find_nearest_enemy: На этом уровне нет врагов!';
+      ? 'find_nearest_enemy: 我看到你了！'
+      : 'find_nearest_enemy: 这个关卡没有敌人！';
     
     setHeroTexts([{ value: message, delay: 1000 }]);
     await delay(GAME_CONFIG.MOVEMENT_DELAYS.NORMAL.findingEnemy);
@@ -253,8 +253,8 @@ export const useGameExecution = () => {
    */
   const handleHasEnemyAround = async (command) => {
     const message = command.hasEnemy 
-      ? 'has_enemy_around: Рядом враг!'
-      : 'has_enemy_around: Рядом нет врагов!';
+      ? 'has_enemy_around: 附近有敌人！'
+      : 'has_enemy_around: 附近没有敌人！';
     
     setHeroTexts([{ value: message, delay: 1000 }]);
     await delay(GAME_CONFIG.MOVEMENT_DELAYS.NORMAL.hasEnemyAround);

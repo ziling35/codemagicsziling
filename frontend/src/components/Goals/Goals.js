@@ -20,7 +20,7 @@ export const Goals = ({ forceOpen, goals, goalsResult }) => {
     <Wrapper>
       <Collapse>
         <CollapsTitle onClick={() => setIsOpen(!isOpen)}>
-          <Title>Цели уровня</Title>
+          <Title>关卡目标</Title>
           <CollapseIcon isOpen={trueIsOpen}>
             <img src={arrow1Icon} alt="arrow" />
           </CollapseIcon>
@@ -28,7 +28,7 @@ export const Goals = ({ forceOpen, goals, goalsResult }) => {
         <CollapseContent isOpen={trueIsOpen}>
           {requiredGoals.length > 0 && (
             <GoalsBlock>
-              <GoalsBlockTitle>Обязательные</GoalsBlockTitle>
+              <GoalsBlockTitle>必做</GoalsBlockTitle>
               <GoalsList>
                 {requiredGoals.map(goal => {
                   const goalCompleted = goalsResult?.find(r => r.type === goal.type)?.completed;
@@ -42,7 +42,7 @@ export const Goals = ({ forceOpen, goals, goalsResult }) => {
           )}
           {optionalGoals.length > 0 && (
             <GoalsBlock>
-              <GoalsBlockTitle>Дополнительные</GoalsBlockTitle>
+              <GoalsBlockTitle>可选</GoalsBlockTitle>
               <GoalsList>
                 {optionalGoals.map(goal => {
                   const goalCompleted = goalsResult?.find(r => r.type === goal.type)?.completed;

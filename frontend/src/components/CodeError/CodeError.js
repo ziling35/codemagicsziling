@@ -29,7 +29,7 @@ export const CodeError = ({ codeErrors, onErrorsClear }) => {
   return (
     <Wrapper offset={(error.line - 1) * 25.19}>
       <img src={close1Icon} alt="close" onClick={() => onErrorsClear()} />
-      <Title>Исправь свой код</Title>
+      <Title>修正你的代码</Title>
       <Divider />
       <Message>
         {splitStringOutsideQuotes(error.message).map((text, i) => {

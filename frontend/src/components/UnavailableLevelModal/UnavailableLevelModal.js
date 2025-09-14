@@ -15,16 +15,16 @@ export const UnavailableLevelModal = ({ dontHaveAccess = false }) => {
     <Wrapper>
       <Modal>
         <Top>
-          <Title>Уровень недоступен</Title>
+          <Title>关卡不可用</Title>
         </Top>
         {!dontHaveAccess && (<>
-          Сначала пройдите предыдущие уровни
+          请先完成前置关卡
           <Button frontColor="#BD3A0F" shadowColor="#8C2B0B" onClick={openMenu} height="50" width="100">
-            <span>Меню</span>
+            <span>菜单</span>
           </Button>
         </>)}
         {dontHaveAccess && (<StyledLink>
-          Вы прошли все бесплатные уровни. Для получения доступа к остальным уровням пишите в телеграм <a href={"https://t.me/reacheight"}>@reacheight</a>.
+          你已通关所有免费关卡。若需访问其余关卡，请在 Telegram 联系 <a href={"https://t.me/reacheight"}>@reacheight</a>。
         </StyledLink>)}
       </Modal>
     </Wrapper>

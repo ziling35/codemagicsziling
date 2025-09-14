@@ -1,10 +1,16 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
+async function getSqliteDrivers() {
+  const sqlite3Module = await import('sqlite3');
+  const sqliteModule = await import('sqlite');
+  const sqlite3 = sqlite3Module.default ?? sqlite3Module;
+  const { open } = sqliteModule;
+  return { sqlite3, open };
+}
 
 const dbFilename = process.env.KODIFIX_DB_FILE ?? String.raw`C:\sqlite\kodifix.db`;
 
 export default class Database {
   async createUserIfNotExists(user) {
+    const { sqlite3, open } = await getSqliteDrivers();
     this.db = await open({ filename: dbFilename, driver: sqlite3.Database });
 
     const existingUser = await this.db.get("SELECT * FROM users where id = $id", {
@@ -22,6 +28,7 @@ export default class Database {
   }
 
   async getUser(userId) {
+    const { sqlite3, open } = await getSqliteDrivers();
     this.db = await open({ filename: dbFilename, driver: sqlite3.Database });
 
     const result = await this.db.get("SELECT * FROM users where id = $userId", {
@@ -33,6 +40,7 @@ export default class Database {
   }
 
   async getAllUserLevels(userId) {
+    const { sqlite3, open } = await getSqliteDrivers();
     this.db = await open({ filename: dbFilename, driver: sqlite3.Database });
 
     const result = await this.db.all("SELECT * FROM user_level where userId = $userId", {
@@ -44,6 +52,7 @@ export default class Database {
   }
 
   async getUserLevel(userId, levelId) {
+    const { sqlite3, open } = await getSqliteDrivers();
     this.db = await open({ filename: dbFilename, driver: sqlite3.Database });
 
     const result = await this.db.get("SELECT * FROM user_level where userId = $userId AND levelId = $levelId", {
@@ -56,6 +65,7 @@ export default class Database {
   }
 
   async addUserLevel(userId, levelId, score) {
+    const { sqlite3, open } = await getSqliteDrivers();
     this.db = await open({ filename: dbFilename, driver: sqlite3.Database });
 
     await this.db.run("INSERT INTO user_level(userId, levelId, score) VALUES($userId, $levelId, $score)", {
@@ -68,6 +78,7 @@ export default class Database {
   }
 
   async updateUserLevel(userId, levelId, score) {
+    const { sqlite3, open } = await getSqliteDrivers();
     this.db = await open({ filename: dbFilename, driver: sqlite3.Database });
 
     await this.db.run("UPDATE user_level set score = $score where userId = $userId AND levelId = $levelId", {
@@ -80,6 +91,7 @@ export default class Database {
   }
 
   async syncUserLevels(userId, levels) {
+    const { sqlite3, open } = await getSqliteDrivers();
     this.db = await open({ filename: dbFilename, driver: sqlite3.Database });
     
     try {

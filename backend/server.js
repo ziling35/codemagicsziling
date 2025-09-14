@@ -40,20 +40,38 @@ app.get('/:game/level/:id/startingCode', (req, res) => {
   res.send(JSON.stringify(startingCode[req.params.game][req.params.id]));
 })
 
+import { transpileCppToPython } from './transpilers/cppToPython.js';
+
 app.post('/:game/level/:id/run', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   const level = levels[req.params.game][req.params.id];
+  const language = (req.body.language || 'python').toLowerCase();
+  let sourceCode = req.body.code || '';
+
+  if (language === 'cpp' || language === 'c++') {
+    try {
+      sourceCode = transpileCppToPython(sourceCode);
+    } catch (e) {
+      res.statusCode = 400;
+      let line = 1;
+      const m = typeof e.message === 'string' && e.message.match(/第\s*(\d+)\s*行/);
+      if (m) line = parseInt(m[1], 10) || 1;
+      res.send(JSON.stringify({ errors: [{ message: e.message, line }] }));
+      return;
+    }
+  }
+
   const analyzer = new CodeAnalyzer();
-  const errors = analyzer.analyze(req.body.code, level.onlyVariablesInAttack, level.onlyVariablesInSwitch);
+  const errors = analyzer.analyze(sourceCode, level.onlyVariablesInAttack, level.onlyVariablesInSwitch, language);
   if (errors.length > 0) {
     res.statusCode = 400;
     res.send(JSON.stringify({ errors }));
     return;
   }
 
-  let runner = new LevelRunner(level);
-  let result = runner.run(req.body.code);
+  let runner = new LevelRunner(level, language);
+  let result = runner.run(sourceCode);
 
   if (result.errors) {
     res.statusCode = 400;
@@ -81,7 +99,7 @@ app.post('/:game/level/:id/run', async (req, res) => {
         }
       }
     } catch (error) {
-      console.error('Ошибка записи прогресса:', error);
+      console.error('写入进度时出错:', error);
     }
   }
 
@@ -170,7 +188,7 @@ app.post('/user/:game/levels/sync', async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(result));
   } catch (error) {
-    console.error('Ошибка синхронизации уровней:', error);
+    console.error('同步关卡时出错:', error);
     res.status(500);
     res.send(JSON.stringify({ error: 'Internal server error' }));
   }

@@ -4,11 +4,11 @@ import { MODULE_CONFIG } from '../components/MainPage/constants';
 
 export const getLocalProgress = () => {
   try {
-    // Получаем текущий уровень из localStorage
+    // 从 localStorage 获取当前关卡
     const currentLevelString = localStorage.getItem(STORAGE_KEYS.CURRENT_LEVEL);
     const currentLevel = currentLevelString ? parseInt(currentLevelString, 10) : 0;
     
-    // Создаем массив завершенных уровней только для бесплатных уровней
+    // 仅为免费关卡创建已完成关卡数组
     const completedLevels = [];
     for (let level = 1; level <= Math.min(currentLevel, MODULE_CONFIG.freeLevels); level++) {
       completedLevels.push(level);
@@ -16,7 +16,7 @@ export const getLocalProgress = () => {
     
     return completedLevels;
   } catch (error) {
-    console.error('Ошибка при получении локального прогресса:', error);
+    console.error('获取本地进度时出错:', error);
     return [];
   }
 };
@@ -27,7 +27,7 @@ export const saveLocalProgress = (level) => {
     const newLevel = Math.max(currentLevel, level);
     localStorage.setItem(STORAGE_KEYS.CURRENT_LEVEL, newLevel.toString());
   } catch (error) {
-    console.error('Ошибка при сохранении локального прогресса:', error);
+    console.error('保存本地进度时出错:', error);
   }
 };
 
@@ -39,15 +39,15 @@ export const syncLocalProgressWithServer = async () => {
       return { success: true, syncedLevels: [] };
     }
     
-    console.log('Найден локальный прогресс:', completedLevels);
+    console.log('发现本地进度:', completedLevels);
     
-    // Формируем массив уровней для синхронизации
+    // 生成用于同步的关卡数组
     const levelsToSync = completedLevels.map(levelId => ({
       levelId,
       score: 3 // Стандартный балл для синхронизированных уровней
     }));
     
-    // Отправляем один запрос для синхронизации всех уровней
+    // 发送单个请求以同步所有关卡
     const response = await axios.post('/user/forest/levels/sync', {
       levels: levelsToSync
     }, { 
@@ -55,9 +55,9 @@ export const syncLocalProgressWithServer = async () => {
     });
     
     if (response.data && response.data.success) {
-      console.log('Успешно синхронизировано уровней:', response.data.syncedCount);
+      console.log('成功同步的关卡数:', response.data.syncedCount);
       
-      // Очищаем локальный прогресс после успешной синхронизации
+      // 同步成功后清除本地进度
       localStorage.removeItem(STORAGE_KEYS.CURRENT_LEVEL);
       
       return {
@@ -69,11 +69,11 @@ export const syncLocalProgressWithServer = async () => {
     
     return {
       success: false,
-      error: 'Неожиданный ответ сервера'
+      error: '服务器返回了意外的响应'
     };
     
   } catch (error) {
-    console.error('Ошибка синхронизации прогресса:', error);
+    console.error('同步进度时出错:', error);
     return {
       success: false,
       error: error.message,
@@ -87,6 +87,6 @@ export const clearLocalProgress = () => {
   try {
     localStorage.removeItem(STORAGE_KEYS.CURRENT_LEVEL);
   } catch (error) {
-    console.error('Ошибка при очистке локального прогресса:', error);
+    console.error('清除本地进度时出错:', error);
   }
 };

@@ -1,24 +1,26 @@
 export default class CodeAnalyzer {
-  analyze(rawCode, onlyVariablesInAttack, onlyVariablesInSwitch) {
+  analyze(rawCode, onlyVariablesInAttack, onlyVariablesInSwitch, language = 'python') {
     const lines = rawCode.split(/\r\n|\r|\n/);
     for (let i = 0; i < lines.length; i++) {
       const lineCode = lines[i];
 
-      const noParenthesisMatch = lineCode.match(/(hero\.[^\d\W]\w*)$/i);
-      if (noParenthesisMatch) {
-        return [
-          {
-            message: `Чтобы вызвать \`${noParenthesisMatch[0]}\`, нужно добавить \`()\`.`,
-            line: i + 1,
-          }
-        ];
+      if (language === 'python') {
+        const noParenthesisMatch = lineCode.match(/(hero\.[^\d\W]\w*)$/i);
+        if (noParenthesisMatch) {
+          return [
+            {
+              message: `要调用 \`${noParenthesisMatch[0]}\`，需要添加 \`()\`。`,
+              line: i + 1,
+            }
+          ];
+        }
       }
   
       const dashMatch = lineCode.match(/(hero.move-down)|(hero.move-up)|(hero.move-left)|(hero.move-right)|(find-nearest-enemy)|(has-enemy-around)|(fireball-up)|(fireball-down)|(fireball-left)|(fireball-right)/);
       if (dashMatch) {
         return [
           {
-            message: `В методе \`${dashMatch[0]}\` должно быть \`_\` вместо \`-\`.`,
+            message: `方法 \`${dashMatch[0]}\` 中应使用 \`_\` 而不是 \`-\`。`,
             line: i + 1,
           }
         ];
@@ -29,7 +31,7 @@ export default class CodeAnalyzer {
         if (notVariableInAttackMatch) {
           return [
             {
-              message: `Используй имя переменной, например \`enemy1\`, вместо строки \`${notVariableInAttackMatch[1]}\`.`,
+              message: `请使用变量名（如 \`enemy1\`）替代字符串 \`${notVariableInAttackMatch[1]}\`。`,
               line: i + 1,
             }
           ];
@@ -41,7 +43,7 @@ export default class CodeAnalyzer {
         if (notVariableInSwitchMatch) {
           return [
             {
-              message: `Используй имя переменной, например \`Мост1\`, вместо строки \`${notVariableInSwitchMatch[1]}\`.`,
+              message: `请使用变量名（如 \`桥1\`）替代字符串 \`${notVariableInSwitchMatch[1]}\`。`,
               line: i + 1,
             }
           ];
@@ -53,7 +55,7 @@ export default class CodeAnalyzer {
         const methodName = methodWithoutArgumentsMatch[1];
         return [
           {
-            message: `Метод \`hero.${methodName}()\` требует аргумент.`,
+            message: `方法 \`hero.${methodName}()\` 需要参数。`,
             line: i + 1,
           }
         ];

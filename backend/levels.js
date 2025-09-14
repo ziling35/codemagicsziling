@@ -15,8 +15,8 @@ export const levels = {
       ],
       enemies: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Помоги мне добраться до финиша', required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Было бы неплохо подобрать алмаз по пути', required: false },
+        { type: 'finish', name: '到达终点', heroText: '帮我到达终点', required: true },
+        { type: 'gems', name: '拾取宝石', heroText: '路上能拾到宝石就更好了', required: false },
       ],
       levers: [],
       bridges: [],
@@ -39,8 +39,8 @@ export const levels = {
       ],
       enemies: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Мне нужно дойти до финиша', required: true },
-        { type: 'gems', name: 'Собрать алмазы', heroText: 'Давай соберем все алмазы', required: false },
+        { type: 'finish', name: '到达终点', heroText: '我需要到达终点', required: true },
+        { type: 'gems', name: '收集宝石', heroText: '我们把所有宝石都收集起来吧', required: false },
       ],
       levers: [],
       bridges: [],
@@ -62,9 +62,9 @@ export const levels = {
       enemies: [],
   
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Проведи меня до финиша', required: true },
-        { type: 'lines', name: 'Использовать 1 строчку кода', heroText: 'Ты должен использовать только 1 строчку кода', linesCount: 1, required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Давай подберем алмаз', required: false },
+        { type: 'finish', name: '到达终点', heroText: '带我到终点', required: true },
+        { type: 'lines', name: '仅使用 1 行代码', heroText: '你只能使用 1 行代码', linesCount: 1, required: true },
+        { type: 'gems', name: '拾取宝石', heroText: '我们拾起宝石吧', required: false },
       ],
       levers: [],
       bridges: [],
@@ -89,8 +89,8 @@ export const levels = {
       ],
       enemies: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Мне нужно дойти до финиша', required: true },
-        { type: 'gems', name: 'Собрать алмазы', heroText: 'Давай соберем все алмазы', required: false },
+        { type: 'finish', name: '到达终点', heroText: '我需要到达终点', required: true },
+        { type: 'gems', name: '收集宝石', heroText: '我们把所有宝石都收集起来吧', required: false },
       ],
       levers: [],
       bridges: [],
@@ -118,9 +118,9 @@ export const levels = {
       ],
       enemies: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Помоги мне добраться до финиша', required: true },
-        { type: 'lines', name: 'Использовать не более 10 строк', heroText: 'Ты должен использовать максимум 10 строчек кода', linesCount: 10, required: true },
-        { type: 'gems', name: 'Собрать алмазы', heroText: 'Давай соберем все алмазы', required: false },
+        { type: 'finish', name: '到达终点', heroText: '帮我到达终点', required: true },
+        { type: 'lines', name: '不超过 10 行代码', heroText: '你最多只能写 10 行代码', linesCount: 10, required: true },
+        { type: 'gems', name: '收集宝石', heroText: '我们把所有宝石都收集起来吧', required: false },
       ],
       levers: [],
       bridges: [],
@@ -142,11 +142,11 @@ export const levels = {
       ],
       enemies: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша на другом берегу', heroText: 'Мне надо как-то перебраться через реку.\nМожет, этот рычаг мне поможет?', required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Было бы неплохо подобрать алмаз по пути', required: false },
+        { type: 'finish', name: '到达对岸的终点', heroText: '我得想办法过河。\n也许这个拉杆能帮上忙？', required: true },
+        { type: 'gems', name: '拾取宝石', heroText: '路上能拾到宝石就更好了', required: false },
       ],
       levers: [
-        { x: 3, y: 2, name: "Мост", activatesId: "bridge", enabled: false }
+        { x: 3, y: 2, name: "桥", activatesId: "bridge", enabled: false }
       ],
       bridges: [
         {
@@ -177,14 +177,14 @@ export const levels = {
       ],
       enemies: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Проведи меня по мостам', required: true },
-        { type: 'lines', name: 'Использовать не более 8 строчек кода', heroText: 'Тебе надо уложиться в 8 строчек кода', linesCount: 8, required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Сможем собрать все алмазы?', required: false },
+        { type: 'finish', name: '到达终点', heroText: '带我走过桥', required: true },
+        { type: 'lines', name: '不超过 8 行代码', heroText: '你需要控制在 8 行代码内', linesCount: 8, required: true },
+        { type: 'gems', name: '拾取宝石', heroText: '我们能把所有宝石都收集吗？', required: false },
       ],
       levers: [
-        { x: 5, y: 6, name: "Мост1", activatesId: "bridge1", enabled: false },
-        { x: 4, y: 0, name: "Мост2", activatesId: "bridge2", enabled: true },
-        { x: 0, y: 2, name: "Мост3", activatesId: "bridge3", enabled: false },
+        { x: 5, y: 6, name: "桥1", activatesId: "bridge1", enabled: false },
+        { x: 4, y: 0, name: "桥2", activatesId: "bridge2", enabled: true },
+        { x: 0, y: 2, name: "桥3", activatesId: "bridge3", enabled: false },
       ],
       bridges: [
         {
@@ -231,12 +231,12 @@ export const levels = {
       ],
       enemies: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша на другом берегу', heroText: 'Мне надо как-то перебраться через реку.\nМожет, этот рычаг мне поможет?', required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Было бы неплохо подобрать алмаз по пути', required: false },
+        { type: 'finish', name: '到达对岸的终点', heroText: '我得想办法过河。\n也许这个拉杆能帮上忙？', required: true },
+        { type: 'gems', name: '拾取宝石', heroText: '路上能拾到宝石就更好了', required: false },
       ],
       levers: [
-        { x: 2, y: 2, name: "Мост1", activatesId: "bridge1", enabled: false },
-        { x: 1, y: 8, name: "Мост2", activatesId: "bridge2", enabled: false },
+        { x: 2, y: 2, name: "桥1", activatesId: "bridge1", enabled: false },
+        { x: 1, y: 8, name: "桥2", activatesId: "bridge2", enabled: false },
       ],
       bridges: [
         {
@@ -280,12 +280,12 @@ export const levels = {
       ],
       enemies: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша на другом берегу', heroText: 'На том берегу много алмазов, давай перейдём на него', required: true },
-        { type: 'lever', leverName: "Секретный", name: 'Найти название рычага и переключить его', heroText: 'Для этого надо выяснить название рычага,\nкоторый откроет мне мост', required: true },
-        { type: 'gems', name: 'Подобрать все алмазы', required: true },
+        { type: 'finish', name: '到达对岸的终点', heroText: '对岸有很多宝石，我们过去吧', required: true },
+        { type: 'lever', leverName: "秘密", name: '找到拉杆的名称并切换它', heroText: '为此需要找出能为我打开桥的拉杆名称', required: true },
+        { type: 'gems', name: '收集所有宝石', required: true },
       ],
       levers: [
-        { x: 1, y: 1, name: "Секретный", activatesId: "bridge1", enabled: false, hidden: true },
+        { x: 1, y: 1, name: "秘密", activatesId: "bridge1", enabled: false, hidden: true },
       ],
       bridges: [
         {
@@ -318,9 +318,9 @@ export const levels = {
         { x: 4, y: 5, alive: true, name: "Greg" },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Проведи меня до финиша', required: true },
-        { type: 'enemies', name: 'Победить всех врагов', heroText: 'Дорогу преградили враги, надо их уничтожить', required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Было бы неплохо подобрать алмаз по пути', required: false },
+        { type: 'finish', name: '到达终点', heroText: '带我到终点', required: true },
+        { type: 'enemies', name: '击败所有敌人', heroText: '敌人挡住了道路，必须消灭他们', required: true },
+        { type: 'gems', name: '拾取宝石', heroText: '路上能拾到宝石就更好了', required: false },
       ],
       levers: [],
       bridges: [],
@@ -350,13 +350,13 @@ export const levels = {
         { x: 1, y: 9, alive: true, name: "Dunrum" },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: null, required: true },
-        { type: 'enemies', name: 'Победить всех врагов', heroText: 'Надо уничтожить всех врагов.\nМы можем сделать это как-то быстрее?', required: true },
-        { type: 'lines', linesCount: 9, name: 'Использовать не больше 9 строк', heroText: null, required: true },
-        { type: 'gems', name: 'Подобрать все алмазы', heroText: 'Попробуем достать все алмазы?', required: false },
+        { type: 'finish', name: '到达终点', heroText: null, required: true },
+        { type: 'enemies', name: '击败所有敌人', heroText: '必须消灭所有敌人。\n我们能更快完成吗？', required: true },
+        { type: 'lines', linesCount: 9, name: '不超过 9 行代码', heroText: null, required: true },
+        { type: 'gems', name: '收集所有宝石', heroText: '试试把所有宝石都拿到？', required: false },
       ],  
       levers: [
-        { x: 5, y: 11, activatesId: 'bridge1', name: "Мост1", enabled: true },
+        { x: 5, y: 11, activatesId: 'bridge1', name: "桥1", enabled: true },
       ],
       bridges: [
         {
@@ -390,12 +390,12 @@ export const levels = {
         { x: 3, y: 10, alive: true, name: "Bobby" },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Помоги мне добраться на другой берег', required: true },
-        { type: 'gems', name: 'Подобрать все алмазы', heroText: 'Попробуем достать все алмазы?', required: false },
+        { type: 'finish', name: '到达终点', heroText: '帮我到达对岸', required: true },
+        { type: 'gems', name: '收集所有宝石', heroText: '试试把所有宝石都拿到？', required: false },
       ],  
       levers: [
-        { x: 4, y: 5, activatesId: 'bridge1', name: "Мост1", enabled: false },
-        { x: 2, y: 7, activatesId: 'bridge2', name: "Мост2", enabled: false },
+        { x: 4, y: 5, activatesId: 'bridge1', name: "桥1", enabled: false },
+        { x: 2, y: 7, activatesId: 'bridge2', name: "桥2", enabled: false },
       ],
       bridges: [
         {
@@ -436,12 +436,12 @@ export const levels = {
         { x: 1, y: 5, alive: true, name: "BigBoy", big: true, moveFinish: { x: 4, y: 2 } },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: null, required: true },
-        { type: 'big_enemy_bridge', bridgeName: "bridge1", enemyName: "BigBoy", name: 'Не дать огромному рыцарю перейти мост', heroText: 'Нам не справиться с этим огромным рыцарем,\nнельзя пропустить его на наш берег!', required: true },
-        { type: 'gems', name: 'Подобрать алмазы', heroText: null, required: false },
+        { type: 'finish', name: '到达终点', heroText: null, required: true },
+        { type: 'big_enemy_bridge', bridgeName: "bridge1", enemyName: "BigBoy", name: '阻止巨型骑士过桥', heroText: '我们对付不了这个巨型骑士，\n绝不能让他到我们这边！', required: true },
+        { type: 'gems', name: '收集宝石', heroText: null, required: false },
       ],
       levers: [
-        { x: 4, y: 1, name: "Мост1", activatesId: "bridge1", enabled: true },
+        { x: 4, y: 1, name: "桥1", activatesId: "bridge1", enabled: true },
       ],
       bridges: [
         {
@@ -478,9 +478,9 @@ export const levels = {
         { x: 6, y: 0, alive: true, name: "Greg" },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Мне нужно дойти до финиша', required: true },
-        { type: 'enemies', name: 'Победить всех врагов, используя переменные', heroText: 'И победить всех врагов по пути, используя переменные', required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Как удобно лежат алмазы, давай их соберем', required: false },
+        { type: 'finish', name: '到达终点', heroText: '我需要到达终点', required: true },
+        { type: 'enemies', name: '使用变量击败所有敌人', heroText: '并在途中用变量击败所有敌人', required: true },
+        { type: 'gems', name: '拾取宝石', heroText: '宝石摆放得真方便，收集它们吧', required: false },
       ],  
       levers: [],
       bridges: [],
@@ -510,14 +510,14 @@ export const levels = {
         { x: 2, y: 1, alive: true, name: "Liam" },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: null, required: true },
-        { type: 'var bridges', name: 'Открыть мосты, используя переменные', heroText: '', required: true },
-        { type: 'enemies', name: 'Победить всех врагов, используя переменные', heroText: 'Помоги мне одолеть всех врагов и добраться\nдо финиша по мостам, используя переменные', required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Как удобно лежат алмазы, давай их соберем', required: false },
+        { type: 'finish', name: '到达终点', heroText: null, required: true },
+        { type: 'var bridges', name: '使用变量打开桥', heroText: '', required: true },
+        { type: 'enemies', name: '使用变量击败所有敌人', heroText: '帮我击败所有敌人并通过桥到达终点', required: true },
+        { type: 'gems', name: '拾取宝石', heroText: '宝石摆放得真方便，收集它们吧', required: false },
       ],  
       levers: [
-        { x: 2, y: 7, name: "Мост1", activatesId: "bridge1", enabled: false },
-        { x: 5, y: 0, name: "Мост2", activatesId: "bridge2", enabled: false },
+        { x: 2, y: 7, name: "桥1", activatesId: "bridge1", enabled: false },
+        { x: 5, y: 0, name: "桥2", activatesId: "bridge2", enabled: false },
       ],
       bridges: [
         {
@@ -562,9 +562,9 @@ export const levels = {
         { x: 6, y: 2, alive: true, name: "Hidden3", hidden: true },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Нужно пробраться к финишу через этих безымянных врагов', required: true },
-        { type: 'enemies', name: 'Победить всех врагов', heroText: 'Давай разузнаем их имена и прогоним отсюда', required: true },
-        { type: 'gems', name: 'Собрать все алмазы', heroText: 'Алмазы всегда пригодятся, давай соберем их', required: false },
+        { type: 'finish', name: '到达终点', heroText: '需要穿过这些无名敌人到达终点', required: true },
+        { type: 'enemies', name: '击败所有敌人', heroText: '我们先打听出他们的名字并把他们赶走', required: true },
+        { type: 'gems', name: '收集所有宝石', heroText: '宝石总是有用的，我们收集它们吧', required: false },
       ],  
       levers: [],
       bridges: [],
@@ -592,7 +592,7 @@ export const levels = {
         { x: 1, y: 6, alive: true, name: "hidden1", hidden: true },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Давай поджарим этого волшебника\nи освободим себе путь', required: true },
+        { type: 'finish', name: '到达终点', heroText: '把那个巫师烤了，\n为自己清出一条路', required: true },
       ],  
       levers: [
       ],
@@ -628,13 +628,13 @@ export const levels = {
         { x: 7, y: 8, alive: true, name: "wizard2", hidden: true, isWizard: true, zone: { x: 1, y: 0, width: 2, height: 3 } },
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Надо узнать имена этих рыцарей,\nчтобы их прогнать', required: true },
-        { type: 'enemies', name: 'Победить всех врагов', heroText: 'А также избавиться от этих волшебников', required: true },
-        { type: 'gems', name: 'Собрать все алмазы', heroText: null, required: false },
+        { type: 'finish', name: '到达终点', heroText: '得先知道这些骑士的名字，\n才能把他们赶走', required: true },
+        { type: 'enemies', name: '击败所有敌人', heroText: '还要摆脱这些巫师', required: true },
+        { type: 'gems', name: '收集所有宝石', heroText: null, required: false },
       ],  
       levers: [
-        { x: 4, y: 8, name: "Мост1", activatesId: "bridge1", enabled: false },
-        { x: 0, y: 6, name: "ИспользуйМеняСУмом", activatesId: "bridge2", enabled: false, hidden: true },
+        { x: 4, y: 8, name: "桥1", activatesId: "bridge1", enabled: false },
+        { x: 0, y: 6, name: "请明智地使用我", activatesId: "bridge2", enabled: false, hidden: true },
       ],
       bridges: [
         {
@@ -676,9 +676,9 @@ export const levels = {
       levers: [],
       bridges: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', heroText: 'Проведи меня до финиша, используя цикл', required: true },
-        { type: 'gems', name: 'Собрать все алмазы', required: true },
-        { type: 'lines', name: 'Использовать не более 3 строк кода', heroText: 'Уложись в 3 строчки кода!', linesCount: 3, required: true },
+        { type: 'finish', name: '到达终点', heroText: '使用循环带我到终点', required: true },
+        { type: 'gems', name: '收集所有宝石', required: true },
+        { type: 'lines', name: '不超过 3 行代码', heroText: '控制在 3 行代码内！', linesCount: 3, required: true },
       ],
       isWhileTrue: true,
     },
@@ -708,9 +708,9 @@ export const levels = {
       levers: [],
       bridges: [],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', required: true },
-        { type: 'gems', name: 'Собрать все алмазы', heroText: 'Алмазы всегда пригодятся, давай соберем их', required: true },
-        { type: 'lines', name: 'Использовать не более 4 строк кода', heroText: 'Снова используй цикл и уложись в 4 строчки кода', linesCount: 4, required: true },
+        { type: 'finish', name: '到达终点', required: true },
+        { type: 'gems', name: '收集所有宝石', heroText: '宝石总是有用的，我们收集它们吧', required: true },
+        { type: 'lines', name: '不超过 4 行代码', heroText: '再次使用循环并控制在 4 行代码内', linesCount: 4, required: true },
       ],
       isWhileTrue: true,
     },
@@ -740,7 +740,7 @@ export const levels = {
         { x: 4, y: 1, alive: true, name: "wizard1", hidden: true, isWizard: true, zone: { x: 0, y: 2, width: 6, height: 6 } },
       ],
       levers: [
-        { x: 8, y: 7, activatesId: 'bridge1', name: "Мост1", enabled: false },
+        { x: 8, y: 7, activatesId: 'bridge1', name: "桥1", enabled: false },
       ],
       bridges: [
         {
@@ -759,9 +759,9 @@ export const levels = {
         }
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', required: true },
-        { type: 'gems', name: 'Подобрать алмаз', heroText: 'Давай сначала очистим себе путь', required: false },
-        { type: 'lines', name: 'Использовать не более 9 строк кода', heroText: 'А потом дойдём до финиша, используя цикл', linesCount: 9, required: true },
+        { type: 'finish', name: '到达终点', required: true },
+        { type: 'gems', name: '拾取宝石', heroText: '我们先把路清出来', required: false },
+        { type: 'lines', name: '不超过 9 行代码', heroText: '然后用循环到达终点', linesCount: 9, required: true },
       ],
       isWhileTrue: true,
       fireballCount: 1,
@@ -794,8 +794,8 @@ export const levels = {
       bridges: [
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', required: true },
-        { type: 'lines', name: 'Использовать не более 7 строк кода', linesCount: 7, required: true },
+        { type: 'finish', name: '到达终点', required: true },
+        { type: 'lines', name: '不超过 7 行代码', linesCount: 7, required: true },
       ],
       isWhileTrue: true,
     },
@@ -829,9 +829,9 @@ export const levels = {
       bridges: [
       ],
       goals: [
-        { type: 'finish', name: 'Добраться до финиша', required: true },
-        { type: 'lines', name: 'Использовать не более 9 строк кода', linesCount: 9, required: true },
-        { type: 'gems', name: 'Собрать все алмазы', heroText: 'Сможем захватит с собой все алмазы?', required: false },
+        { type: 'finish', name: '到达终点', required: true },
+        { type: 'lines', name: '不超过 9 行代码', linesCount: 9, required: true },
+        { type: 'gems', name: '收集所有宝石', heroText: '我们能把所有宝石都带上吗？', required: false },
       ],
       isWhileTrue: true,
     },

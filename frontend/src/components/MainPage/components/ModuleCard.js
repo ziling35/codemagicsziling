@@ -58,7 +58,7 @@ export const ModuleCard = ({ completedLevelsCount, progressPercentage }) => {
               aria-valuenow={progressPercentage}
               aria-valuemin="0"
               aria-valuemax="100"
-              aria-label={`Прогресс модуля: ${progressPercentage}%`}
+              aria-label={`模块进度：${progressPercentage}%`}
             />
           </ProgressBar>
         </ModuleProgress>
@@ -70,7 +70,7 @@ export const ModuleCard = ({ completedLevelsCount, progressPercentage }) => {
             <Tag key={index}>{tag}</Tag>
           ))}
           <Tag className="mobile-more-tags">
-            +{mobileHiddenTagsCount} ещё
+            +{mobileHiddenTagsCount} 更多
           </Tag>
         </Tags>
       </ModuleInfo>

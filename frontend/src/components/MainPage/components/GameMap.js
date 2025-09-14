@@ -26,7 +26,7 @@ const LevelButton = memo(({
     available={available}
     role="button"
     tabIndex={available ? 0 : -1}
-    aria-label={`Уровень ${level}${completed ? ' (завершен)' : ''}${current ? ' (текущий)' : ''}${!available ? ' (недоступен)' : ''}`}
+    aria-label={`关卡 ${level}${completed ? ' (已完成)' : ''}${current ? ' (当前)' : ''}${!available ? ' (不可用)' : ''}`}
     aria-disabled={!available}
     onKeyDown={(e) => {
       if (available && (e.key === 'Enter' || e.key === ' ')) {
@@ -77,7 +77,7 @@ export const GameMap = memo(({
           width={`${theoreticalDimensions.width}px`} 
           height={`${theoreticalDimensions.height}px`}
           role="img"
-          aria-label="Карта игровых уровней"
+          aria-label="游戏关卡地图"
         >
           {LEVEL_POSITIONS.map(renderLevel)}
         </Map>

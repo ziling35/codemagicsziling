@@ -50,7 +50,7 @@ export const MainPage = () => {
     return (
       <Layout isGamePage>
         <Container>
-          <LoadingState message="Загрузка игровых данных..." />
+          <LoadingState message="正在加载游戏数据..." />
         </Container>
       </Layout>
     );

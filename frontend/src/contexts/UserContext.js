@@ -38,18 +38,18 @@ export const UserProvider = ({ children }) => {
   };
 
   const updateUserWithSync = async (newUser) => {
-    // Если пользователь входит в систему впервые (или заново)
+    // 如果用户是首次（或重新）登录
     if (newUser && !user) {
       try {
-        // Синхронизируем локальный прогресс с сервером
+        // 将本地进度与服务器同步
         const syncResult = await syncLocalProgressWithServer();
-        console.log('Результат синхронизации прогресса:', syncResult);
+        console.log('进度同步结果:', syncResult);
         
         if (syncResult.success && syncResult.syncedLevels.length > 0) {
-          console.log(`Синхронизировано ${syncResult.syncedLevels.length} уровней`);
+          console.log(`已同步 ${syncResult.syncedLevels.length} 个关卡`);
         }
       } catch (error) {
-        console.error('Ошибка при синхронизации прогресса:', error);
+        console.error('同步进度时出错:', error);
       }
     }
     

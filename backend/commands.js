@@ -1,53 +1,53 @@
-const movingConstants = [['up', 'вверх'], ['down', 'вниз'], ['right', 'вправо'], ['left', 'влево']];
+const movingConstants = [['up', '向上'], ['down', '向下'], ['right', '向右'], ['left', '向左']];
 
 export const shortMovingCommands = movingConstants.map(constants => ({
     code: `hero.move_${constants[0]}()`,
-    description: `перемещает героя на 1 шаг ${constants[1]}`,
+    description: `让英雄${constants[1]}移动 1 步`,
     example: `hero.move_${constants[0]}()`,
 }));
 
 export const longMovingCommands = movingConstants.map(constants => ({
     code: `hero.move_${constants[0]}(steps)`,
-    description: `перемещает героя на \`steps\` шагов ${constants[1]}`,
+    description: `让英雄${constants[1]}移动 \`steps\` 步`,
     example: `hero.move_${constants[0]}(3)`,
     autocompleteValue: `hero.move_${constants[0]}(#{1})`,
 }));
 
 export const attackCommand = {
     code: 'hero.attack(enemy)',
-    description: 'атакует врага по имени `enemy`, если он находится рядом',
+    description: '如果敌人靠近，则攻击名为 `enemy` 的敌人',
     example: 'hero.attack("John")',
     autocompleteValue: 'hero.attack(${1})',
 };
 
 export const switchCommand = {
     code: 'hero.switch(lever)',
-    description: 'переключает рычаг с названием `lever`, если он находится рядом',
-    example: 'hero.switch("Мост")',
+    description: '如果靠近，则切换名为 `lever` 的拉杆',
+    example: 'hero.switch("桥")',
     autocompleteValue: 'hero.switch(${1})',
 }
 
 export const findNearestEnemy = {
     code: 'hero.find_nearest_enemy()',
-    description: 'возвращает ближайшего живого врага',
+    description: '返回最近的存活敌人',
     example: 'enemy = hero.find_nearest_enemy()\nhero.attack(enemy)',
 }
 
 export const hasEnemyAround = {
     code: 'hero.has_enemy_around()',
-    description: 'сообщает, есть ли живой враг на соседних с твоим персонажем клетках',
+    description: '告知角色相邻格子是否存在存活敌人',
     example: 'if hero.has_enemy_around():\n    enemy = hero.find_nearest_enemy()\n    hero.attack(enemy)',
 }
 
 export const isDisabled = {
     code: 'hero.is_disabled(lever)',
-    description: 'проверяет, выключен ли рычаг `lever`',
-    example: 'if hero.is_disabled("Мост"):\n    hero.switch("Мост")',
+    description: '检查名为 `lever` 的拉杆是否关闭',
+    example: 'if hero.is_disabled("桥"):\n    hero.switch("桥")',
     autocompleteValue: 'hero.is_disabled(${1})',
 }
 
 export const fireballCommands = movingConstants.map(constants => ({
     code: `hero.fireball_${constants[0]}()`,
-    description: `кидает ${constants[1]} огненный шар, который уничтожает врагов`,
+    description: `向${constants[1]}投掷能消灭敌人的火球`,
     example: `hero.fireball_${constants[0]}()`,
 }));

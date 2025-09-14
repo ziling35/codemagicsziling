@@ -34,14 +34,14 @@ export const Layout = ({ children, isHeaderTransparent = false, showAutoLogin = 
         axios.post(`/user`, {}, { withCredentials: true })
           .then(() => location.reload());
       })
-      .catch(error => console.log('Обработка ошибки', error));
+      .catch(error => console.log('错误处理', error));
     }
   }, [showAutoLogin]);
 
   return (
     <LayoutWrapper>
       <Header
-        rightButtonText={isGamePage ? 'Войти' : 'Начать программировать'}
+        rightButtonText={isGamePage ? '登录' : '开始编程'}
         onRightButtonClick={isGamePage ? () => setShowLoginModal(true) : () => navigate('/game')}
         isTransparent={isHeaderTransparent}
       />

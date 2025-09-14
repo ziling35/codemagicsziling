@@ -1,19 +1,19 @@
 export const MODULE_CONFIG = {
   id: 1,
-  title: 'Лесной путь',
-  description: 'Изучите основы программирования в увлекательном путешествии через лес',
+  title: '森林之路',
+  description: '在穿越森林的有趣旅程中学习编程基础',
   totalLevels: 23,
   freeLevels: 3,
   tags: [
-    'знакомство с платформой',
-    'основы синтаксиса',
-    'методы',
-    'параметры',
-    'строки',
-    'комментарии',
-    'переменные',
-    'циклы',
-    'if-выражения'
+    '平台入门',
+    '语法基础',
+    '方法',
+    '参数',
+    '字符串',
+    '注释',
+    '变量',
+    '循环',
+    'if 表达式'
   ],
   mobileHiddenTagsCount: 6
 };
@@ -59,12 +59,12 @@ export const ROUTES = {
 };
 
 export const UI_TEXT = {
-  loginTitle: 'Войдите, чтобы продолжить',
-  moduleNumber: 'Модуль 1',
-  statusCompleted: 'Завершен',
-  statusInProgress: 'В процессе',
-  levelsText: 'уровня',
-  levelsCompleted: 'уровней завершено',
-  moreTagsText: '+6 ещё',
-  altText: 'Лесной путь Preview'
+  loginTitle: '登录以继续',
+  moduleNumber: '模块 1',
+  statusCompleted: '已完成',
+  statusInProgress: '进行中',
+  levelsText: '个关卡',
+  levelsCompleted: '个关卡已完成',
+  moreTagsText: '+6 更多',
+  altText: '森林之路 预览'
 }; 

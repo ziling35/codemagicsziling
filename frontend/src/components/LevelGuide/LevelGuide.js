@@ -101,7 +101,7 @@ export const LevelGuide = ({ level, data, onClose }) => {
     <Wrapper>
       <Modal>
         <Top>
-          <Title>Уровень {level}</Title>
+          <Title>关卡 {level}</Title>
           <CloseButton onClick={onClose}>
             <img src={close2Icon} alt="close" />
           </CloseButton>
@@ -137,7 +137,7 @@ export const LevelGuide = ({ level, data, onClose }) => {
 
         {height >= 709 && newCommand ? (
           <NewCommandsWrapper>
-            <Subtitle>Новые команды</Subtitle>
+            <Subtitle>新指令</Subtitle>
             <Block>
               <NewCommandTop>
                 <Subtitle>
@@ -145,11 +145,11 @@ export const LevelGuide = ({ level, data, onClose }) => {
                   <span>{newCommandCode.brackets}</span>
                 </Subtitle>
                 <span>-</span>
-                <Tag>метод</Tag>
+                <Tag>方法</Tag>
               </NewCommandTop>
               <Description>{newCommand.description}</Description>
               <Example>
-                <ExampleTitle>Пример использования:</ExampleTitle>
+                <ExampleTitle>使用示例：</ExampleTitle>
                 <CodeMirrorWrapper>
                   <CodeMirror
                     extensions={extensions}
@@ -164,7 +164,7 @@ export const LevelGuide = ({ level, data, onClose }) => {
               {newCommands.length > 1 ? (
                 <Steps>
                   <Control type="prev" onClick={prev} disabled={!hasPrev}>
-                    <img src={arrow2Icon} alt="предыдущий" />
+                    <img src={arrow2Icon} alt="上一条" />
                   </Control>
 
                   <CirclesWrapper>
@@ -178,7 +178,7 @@ export const LevelGuide = ({ level, data, onClose }) => {
                   </CirclesWrapper>
 
                   <Control type="next" onClick={next} disabled={!hasNext}>
-                    <img src={arrow2Icon} alt="следующий" />
+                    <img src={arrow2Icon} alt="下一条" />
                   </Control>
                 </Steps>
               ) : null}
@@ -188,10 +188,10 @@ export const LevelGuide = ({ level, data, onClose }) => {
 
         <ButtonsWrapper>
           <Button frontColor="#BD3A0F" shadowColor="#8C2B0B" onClick={openMenu} height="50" width="100">
-            <span>Меню</span>
+            <span>菜单</span>
           </Button> 
           <Button frontColor="#40BF4C" shadowColor="#1E9029" onClick={onClose} height="50" width="100">
-            <span>Дальше</span>
+            <span>继续</span>
           </Button>
         </ButtonsWrapper>
       </Modal>

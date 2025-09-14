@@ -18,11 +18,11 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 12px;
+  right: 12px;
   gap: 12px;
-  transform: translate(-540px, ${({ offset }) => 24 + offset}px);
-  z-index: 100;
+  transform: translate(0, ${({ offset }) => 24 + offset}px);
+  z-index: 99;
   background-color: #2a2623;
   animation: 300ms ${appearance} ease-in-out forwards;
 

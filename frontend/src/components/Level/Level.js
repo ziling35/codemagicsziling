@@ -48,11 +48,11 @@ import { wizardsToCells } from '../../utils/wizardZoneUtils';
 import { WizardZoneCell } from '../WizardZoneCell';
 import { SpellsCounter } from '../SpellsCounter';
 
-const getInitialCodeFromStorage = (gameId, level) =>
-  localStorage.getItem(`${STORAGE_KEYS.CODE_PREFIX}${gameId}-${level}`);
+const getInitialCodeFromStorage = (gameId, level, language) =>
+  localStorage.getItem(`${STORAGE_KEYS.CODE_PREFIX}${gameId}-${level}-${language}`);
 
-const setInitialCode = (gameId, level, code) =>
-  localStorage.setItem(`${STORAGE_KEYS.CODE_PREFIX}${gameId}-${level}`, code);
+const setInitialCode = (gameId, level, code, language) =>
+  localStorage.setItem(`${STORAGE_KEYS.CODE_PREFIX}${gameId}-${level}-${language}`, code);
 
 const prepareCells = (grid) => {
   const cells = [];
@@ -77,6 +77,18 @@ export const Level = () => {
     return <>Уровень не найден</>;
 
   const gameExecution = useGameExecution();
+  const cppTemplate = `// 使用 C++（受限语法）来操作英雄：
+// 仅支持 if / while(true) / hero.move_* / hero.attack / hero.switch 等
+// 例如：
+// hero.move_right();
+// while(true) {
+//   if (hero.has_enemy_around()) {
+//     auto e = hero.find_nearest_enemy(); // 变量名直接使用，无需声明类型
+//     hero.attack(e);
+//   }
+//   hero.move_down();
+// }
+`;
 
   const [game, setGame] = useState(null);
   const [initialLevelData, setInitialLevelData] = useRefState(null);
@@ -84,7 +96,9 @@ export const Level = () => {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [isScoreOpen, setIsScoreOpen] = useState(false);
   const [instructions, setInstructions] = useState(null);
-  const [code, setCode] = useRefState(getInitialCodeFromStorage(gameId, id));
+  const [language, setLanguage] = useState('python');
+  const [startingCode, setStartingCode] = useState('');
+  const [code, setCode] = useRefState(getInitialCodeFromStorage(gameId, id, 'python'));
   const [codeErrors, setCodeErrors] = useState(null);
   const [scale, setScale] = useState(GAME_CONFIG.SCALE.DEFAULT);
   const [dragPosition, setDragPosition] = useRefState({ x: 0, y: 0 });
@@ -138,8 +152,9 @@ export const Level = () => {
 
   const fetchInitialCode = async () => {
     const { data } = await axios.get(API_ENDPOINTS.STARTING_CODE(gameId, id));
+    setStartingCode(data);
     if (isNullish(code.current)) {
-      setCode(data);
+      setCode(language === 'cpp' ? cppTemplate : data);
     }
   };
 
@@ -148,7 +163,7 @@ export const Level = () => {
     setLevelData(null);
     setIsScoreOpen(false);
     setInstructions(null);
-    setCode(getInitialCodeFromStorage(gameId, id));
+    setCode(getInitialCodeFromStorage(gameId, id, language));
     
     // Reset game execution state
     gameExecution.setIsActuallyRunning(false);
@@ -261,11 +276,12 @@ export const Level = () => {
   const startGame = async () => {
     resetData();
     gameExecution.setIsStopped(false);
-    setInitialCode(gameId, id, code.current);
+    setInitialCode(gameId, id, code.current, language);
 
     try {
       const { data } = await axios.post(API_ENDPOINTS.LEVEL_RUN(gameId, id), {
         code: code.current,
+        language: language,
       }, {
         withCredentials: true,
       });
@@ -640,7 +656,40 @@ export const Level = () => {
           onStop={stopGame}
           onGuideOpen={openGuide}
         />
+      <div style={{ position: 'absolute', top: 12, right: 16, display: 'flex', gap: 8, zIndex: 5 }}>
+        <button
+          onClick={() => {
+            setLanguage('python');
+            const stored = getInitialCodeFromStorage(gameId, id, 'python');
+            setCode(stored ?? startingCode);
+          }}
+          style={{
+            padding: '6px 10px',
+            borderRadius: 8,
+            border: 'none',
+            cursor: 'pointer',
+            background: language === 'python' ? '#2D7CD4' : '#3a3f44',
+            color: '#fff',
+          }}
+        >Python</button>
+        <button
+          onClick={() => {
+            setLanguage('cpp');
+            const stored = getInitialCodeFromStorage(gameId, id, 'cpp');
+            setCode(stored ?? cppTemplate);
+          }}
+          style={{
+            padding: '6px 10px',
+            borderRadius: 8,
+            border: 'none',
+            cursor: 'pointer',
+            background: language === 'cpp' ? '#2D7CD4' : '#3a3f44',
+            color: '#fff',
+          }}
+        >C++</button>
+      </div>
       <CodeEditor
+        language={language}
         code={code.current}
         codeErrors={codeErrors}
         isRunning={gameExecution.isActuallyRunning.current}

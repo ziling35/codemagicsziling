@@ -31,7 +31,7 @@ const LoadingText = styled.p`
   margin: 0;
 `;
 
-export const LoadingState = ({ message = 'Загрузка...' }) => (
+export const LoadingState = ({ message = '加载中...' }) => (
   <LoadingContainer role="status" aria-live="polite">
     <Spinner aria-hidden="true" />
     <LoadingText>{message}</LoadingText>

@@ -7,7 +7,7 @@ export const MiniProfile = ({ user, onLogout }) => {
       <AvatarPlaceHolder />
       <NameAndTitle>
         <Name>{user.name}</Name>
-        <Title>Новичок</Title>
+        <Title>新手</Title>
       </NameAndTitle>
       <Logout onClick={onLogout} />
     </MiniProfileWrapper>
