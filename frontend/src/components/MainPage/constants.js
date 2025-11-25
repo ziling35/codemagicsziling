@@ -3,7 +3,7 @@ export const MODULE_CONFIG = {
   title: '森林之路',
   description: '在穿越森林的有趣旅程中学习编程基础',
   totalLevels: 23,
-  freeLevels: 3,
+  freeLevels: 23, // 所有关卡免费，无需登录
   tags: [
     '平台入门',
     '语法基础',

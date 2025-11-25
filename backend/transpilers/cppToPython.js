@@ -12,6 +12,26 @@
 export function transpileCppToPython(cppSource) {
   if (typeof cppSource !== 'string') throw new Error('Invalid source');
 
+  // 检查框架完整性
+  const hasInclude = /#include\s*<[^>]+>/.test(cppSource);
+  const hasNamespace = /using\s+namespace\s+std\s*;/.test(cppSource);
+  const hasMain = /\b(?:int|void)\s+main\s*\(\s*(?:void)?\s*\)\s*\{/.test(cppSource);
+
+  const errors = [];
+  if (!hasInclude) {
+    errors.push('缺少头文件声明，例如：#include <iostream>');
+  }
+  if (!hasNamespace) {
+    errors.push('缺少命名空间声明：using namespace std;');
+  }
+  if (!hasMain) {
+    errors.push('缺少 main 函数：int main() { ... }');
+  }
+
+  if (errors.length > 0) {
+    throw new Error('C++ 代码框架不完整：\n' + errors.map((e, i) => `${i + 1}. ${e}`).join('\n'));
+  }
+
   // Strict C++-like semicolon enforcement for simple statements
   // Allows: control headers (if/else/while/for), preprocessor, using/typedef, braces lines, and lines containing braces
   const rawLines = cppSource.replace(/\r\n?|\n/g, '\n').split('\n');

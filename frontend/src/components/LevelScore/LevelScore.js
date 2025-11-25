@@ -38,14 +38,16 @@ export const LevelScore = ({ isLastLevel, score, onContinue, onClose }) => {
         </Block>
 
         <ButtonsWrapper>
-          <Button frontColor="#BD3A0F" shadowColor="#8C2B0B" onClick={openMenu} height="50" width="100">
+          {/* 隐藏菜单按钮 */}
+          {/* <Button frontColor="#BD3A0F" shadowColor="#8C2B0B" onClick={openMenu} height="50" width="100">
             <span>菜单</span>
-          </Button> 
-          {!isLastLevel &&
+          </Button> */}
+          {/* 隐藏继续按钮 */}
+          {/* {!isLastLevel &&
             <Button frontColor="#40BF4C" shadowColor="#1E9029" onClick={onContinue} height="50" width="100">
               <span>继续</span>
             </Button>
-          }
+          } */}
           <Button frontColor="#D79D2C" shadowColor="#B47C11" onClick={onClose} height="50" width="100">
             <span>重新开始</span>
           </Button>

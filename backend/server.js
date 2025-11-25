@@ -20,6 +20,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors);
 
+// Health check endpoint for container healthchecks and uptime probes
+app.get('/api/health', (req, res) => {
+  res.status(200).send('ok');
+});
+
 app.get('/games/:id', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(games[req.params.id]));
@@ -142,15 +147,18 @@ app.post('/user', async (req, res) => {
 })
 
 app.get('/user/:game/levels', async (req, res) => {
+  // 允许未登录用户访问，返回空数组
   if (!req.cookies.yaToken) {
-    res.sendStatus(401);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify([]));
     return;
   }
 
   const userManager = new UserManager();
   const user = await userManager.getUser(req.cookies.yaToken);
   if (!user) {
-    res.sendStatus(401);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify([]));
     return;
   }
 

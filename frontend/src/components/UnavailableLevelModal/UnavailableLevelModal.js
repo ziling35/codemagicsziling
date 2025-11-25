@@ -19,9 +19,9 @@ export const UnavailableLevelModal = ({ dontHaveAccess = false }) => {
         </Top>
         {!dontHaveAccess && (<>
           请先完成前置关卡
-          <Button frontColor="#BD3A0F" shadowColor="#8C2B0B" onClick={openMenu} height="50" width="100">
+          {/* <Button frontColor="#BD3A0F" shadowColor="#8C2B0B" onClick={openMenu} height="50" width="100">
             <span>菜单</span>
-          </Button>
+          </Button> */}
         </>)}
         {dontHaveAccess && (<StyledLink>
           你已通关所有免费关卡。若需访问其余关卡，请在 Telegram 联系 <a href={"https://t.me/reacheight"}>@reacheight</a>。

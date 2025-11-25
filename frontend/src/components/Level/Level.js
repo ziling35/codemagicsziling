@@ -47,6 +47,8 @@ import { useUser } from '../../contexts/UserContext';
 import { wizardsToCells } from '../../utils/wizardZoneUtils';
 import { WizardZoneCell } from '../WizardZoneCell';
 import { SpellsCounter } from '../SpellsCounter';
+import { achievementManager } from '../../utils/achievementSystem';
+import { AchievementNotification } from '../AchievementNotification/AchievementNotification';
 
 const getInitialCodeFromStorage = (gameId, level, language) =>
   localStorage.getItem(`${STORAGE_KEYS.CODE_PREFIX}${gameId}-${level}-${language}`);
@@ -72,22 +74,34 @@ export const Level = () => {
   const { gameId, id } = useParams();
   const navigate = useNavigate();
   const { height: innerHeight } = useWindowSize();
+  
+  // 从 URL 参数读取语言设置 (?lang=cpp 或 ?lang=python)
+  const location = window.location;
+  const urlParams = new URLSearchParams(location.search);
+  const langParam = urlParams.get('lang');
+  const initialLanguage = (langParam === 'cpp' || langParam === 'c++') ? 'cpp' : 'python';
 
   if (id > GAME_CONFIG.LEVELS.MAX_LEVEL)
     return <>Уровень не найден</>;
 
   const gameExecution = useGameExecution();
-  const cppTemplate = `// 使用 C++（受限语法）来操作英雄：
-// 仅支持 if / while(true) / hero.move_* / hero.attack / hero.switch 等
-// 例如：
-// hero.move_right();
-// while(true) {
-//   if (hero.has_enemy_around()) {
-//     auto e = hero.find_nearest_enemy(); // 变量名直接使用，无需声明类型
-//     hero.attack(e);
-//   }
-//   hero.move_down();
-// }
+  const cppTemplate = `#include <iostream>
+using namespace std;
+
+int main() {
+    // 在这里编写你的代码来操作英雄
+    // 例如：
+    // hero.move_right();
+    // while(true) {
+    //   if (hero.has_enemy_around()) {
+    //     auto e = hero.find_nearest_enemy();
+    //     hero.attack(e);
+    //   }
+    //   hero.move_down();
+    // }
+    
+    return 0;
+}
 `;
 
   const [game, setGame] = useState(null);
@@ -96,15 +110,18 @@ export const Level = () => {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [isScoreOpen, setIsScoreOpen] = useState(false);
   const [instructions, setInstructions] = useState(null);
-  const [language, setLanguage] = useState('python');
+  const [language, setLanguage] = useState(initialLanguage);
   const [startingCode, setStartingCode] = useState('');
-  const [code, setCode] = useRefState(getInitialCodeFromStorage(gameId, id, 'python'));
+  const [code, setCode] = useRefState(getInitialCodeFromStorage(gameId, id, initialLanguage));
   const [codeErrors, setCodeErrors] = useState(null);
   const [scale, setScale] = useState(GAME_CONFIG.SCALE.DEFAULT);
   const [dragPosition, setDragPosition] = useRefState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useRefState(false);
   const [dragStart, setDragStart] = useRefState({ x: 0, y: 0 });
   const dragAnimationFrame = useRefState(null);
+  const [achievements, setAchievements] = useState([]);
+  const [levelStartTime, setLevelStartTime] = useState(null);
+  const [usedHints, setUsedHints] = useState(false);
 
   const {
     completedLevelsCount,
@@ -242,7 +259,7 @@ export const Level = () => {
         } else {
           gameExecution.setIsLevelFinished(true);
           gameExecution.setForceShowGoals(true);
-          gameExecution.setHeroTexts([{ value: 'Отлично, мы можем идти дальше', delay: 1500 }]);
+          gameExecution.setHeroTexts([{ value: '太棒了！我们可以继续前进了！', delay: 1500 }]);
           await delay(1500);
           audioManager.play(SOUND_NAMES.VICTORY);
           setIsGuideOpen(false);
@@ -250,6 +267,24 @@ export const Level = () => {
 
           if (!isAuthenticated) {
             saveLocalProgress(parseInt(id, 10));
+          }
+
+          // 检查成就
+          const completionTime = levelStartTime ? (Date.now() - levelStartTime) / 1000 : null;
+          const codeLines = code.current.split('\n').filter(line => line.trim()).length;
+          const allGemsCollected = goals.filter(g => g.type === 'gems').every(g => g.completed);
+          
+          const newAchievements = achievementManager.updateStats({
+            completedLevels: parseInt(id, 10),
+            fastestTime: completionTime,
+            minCodeLines: codeLines,
+            perfectRuns: allGemsCollected ? achievementManager.playerStats.perfectRuns + 1 : achievementManager.playerStats.perfectRuns,
+            currentStreak: achievementManager.playerStats.currentStreak + 1,
+            levelsWithoutHints: !usedHints ? achievementManager.playerStats.levelsWithoutHints + 1 : achievementManager.playerStats.levelsWithoutHints,
+          });
+
+          if (newAchievements.length > 0) {
+            setAchievements(newAchievements);
           }
         }
       }
@@ -277,6 +312,7 @@ export const Level = () => {
     resetData();
     gameExecution.setIsStopped(false);
     setInitialCode(gameId, id, code.current, language);
+    setLevelStartTime(Date.now());
 
     try {
       const { data } = await axios.post(API_ENDPOINTS.LEVEL_RUN(gameId, id), {
@@ -358,6 +394,7 @@ export const Level = () => {
   const openGuide = () => {
     setIsGuideOpen(true);
     gameExecution.setHeroTexts([]);
+    setUsedHints(true);
   };
 
   const closeGuide = () => {
@@ -484,12 +521,14 @@ export const Level = () => {
 
   return (
     <Wrapper>
-      <MenuButton>
+      {/* 隐藏菜单按钮 */}
+      {/* <MenuButton>
         <Button frontColor="#BD3A0F" shadowColor="#8C2B0B" onClick={openMenu} height="50" width="100">
           <span>Меню</span>
         </Button> 
-      </MenuButton>
-      <Goals
+      </MenuButton> */}
+      {/* 隐藏目标面板 */}
+       <Goals
         forceOpen={gameExecution.forceShowGoals}
         goals={initialLevelData.current.goals}
         goalsResult={gameExecution.levelResult.current?.goals || []}
@@ -656,12 +695,16 @@ export const Level = () => {
           onStop={stopGame}
           onGuideOpen={openGuide}
         />
-      <div style={{ position: 'absolute', top: 12, right: 16, display: 'flex', gap: 8, zIndex: 5 }}>
+      {/* 语言切换按钮已隐藏 */}
+      <div style={{ display: 'none' }}>
         <button
           onClick={() => {
             setLanguage('python');
             const stored = getInitialCodeFromStorage(gameId, id, 'python');
             setCode(stored ?? startingCode);
+            // 更新 URL 参数
+            const newUrl = `/${gameId}/level/${id}?lang=python`;
+            window.history.replaceState(null, '', newUrl);
           }}
           style={{
             padding: '6px 10px',
@@ -677,6 +720,9 @@ export const Level = () => {
             setLanguage('cpp');
             const stored = getInitialCodeFromStorage(gameId, id, 'cpp');
             setCode(stored ?? cppTemplate);
+            // 更新 URL 参数
+            const newUrl = `/${gameId}/level/${id}?lang=cpp`;
+            window.history.replaceState(null, '', newUrl);
           }}
           style={{
             padding: '6px 10px',
@@ -710,9 +756,16 @@ export const Level = () => {
           onClose={closeScore}
         />
       )}
-      {showLoginModal && <LoginModal title='Войдите, чтобы продолжить игру' canClose={false} />}
+      {showLoginModal && <LoginModal title='登录以继续游戏' canClose={false} />}
       {showPreviousLevelsModal && <UnavailableLevelModal />}
       {showAccessModal && <UnavailableLevelModal dontHaveAccess />}
+      {achievements.map((achievement, index) => (
+        <AchievementNotification
+          key={`${achievement.id}-${index}`}
+          achievement={achievement}
+          onClose={() => setAchievements(prev => prev.filter((_, i) => i !== index))}
+        />
+      ))}
     </Wrapper>
   );
 };

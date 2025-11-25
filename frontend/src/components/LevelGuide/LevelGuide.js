@@ -187,9 +187,9 @@ export const LevelGuide = ({ level, data, onClose }) => {
         ) : null}
 
         <ButtonsWrapper>
-          <Button frontColor="#BD3A0F" shadowColor="#8C2B0B" onClick={openMenu} height="50" width="100">
+          {/* <Button frontColor="#BD3A0F" shadowColor="#8C2B0B" onClick={openMenu} height="50" width="100">
             <span>菜单</span>
-          </Button> 
+          </Button>  */}
           <Button frontColor="#40BF4C" shadowColor="#1E9029" onClick={onClose} height="50" width="100">
             <span>继续</span>
           </Button>

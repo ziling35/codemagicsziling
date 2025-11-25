@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Layout } from '../Layout/Layout';
 import { LoginModal } from '../LoginModal/LoginModal';
 import { Container } from './styled';
@@ -12,10 +12,13 @@ import { ModuleCard } from './components/ModuleCard';
 import { GameMap } from './components/GameMap';
 import { LoadingState } from './components/LoadingState';
 import { ErrorState } from './components/ErrorState';
+import { AchievementsPanel } from '../AchievementsPanel/AchievementsPanel';
 
 import { MODULE_CONFIG, UI_TEXT } from './constants';
 
 export const MainPage = () => {
+  const [showAchievements, setShowAchievements] = useState(false);
+
   const {
     completedLevelsCount,
     isLoading: isGameDataLoading,
@@ -75,6 +78,7 @@ export const MainPage = () => {
         <ModuleCard
           completedLevelsCount={completedLevelsCount}
           progressPercentage={progressPercentage}
+          onAchievementsClick={() => setShowAchievements(true)}
         />
 
         <GameMap
@@ -95,6 +99,10 @@ export const MainPage = () => {
           onClose={handleModalClose}
           onSuccess={handleLoginSuccess}
         />
+      )}
+
+      {showAchievements && (
+        <AchievementsPanel onClose={() => setShowAchievements(false)} />
       )}
     </Layout>
   );

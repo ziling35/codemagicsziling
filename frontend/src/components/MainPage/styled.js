@@ -436,3 +436,57 @@ export const ModuleNumber = styled.div`
     font-size: 10px;
   }
 `;
+
+export const AchievementButton = styled.button`
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 13px;
+    padding: 10px 14px;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    padding: 8px 12px;
+    margin-top: 10px;
+  }
+`;

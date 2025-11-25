@@ -100,14 +100,14 @@ export const CodeEditor = ({
 
   return (
     <>
-      {instructions && (instructions.newCommands || instructions.prevCommands) && (
+      {/* 隐藏上下左右按钮和命令按钮 */}
+      {/* {instructions && (instructions.newCommands || instructions.prevCommands) && (
         <div style={{
           display: 'flex',
           gap: 16,
           marginBottom: 12,
           maxWidth: 529,
         }}>
-          {/* 左侧竖排方向按钮 */}
           <div style={{
             display: 'flex',
             flexDirection: 'column',
@@ -159,7 +159,6 @@ export const CodeEditor = ({
             />
           </div>
 
-          {/* 右侧其余可用命令（自动换行） */}
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -186,7 +185,7 @@ export const CodeEditor = ({
             })()}
           </div>
         </div>
-      )}
+      )} */}
       <CodeMirrorWrapper
         width={width}
         errorLine={codeErrors?.[0].line}

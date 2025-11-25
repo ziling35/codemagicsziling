@@ -13,11 +13,15 @@ import {
   ModuleStatus,
   ModulePreview,
   ModuleNumber,
+  AchievementButton,
 } from '../styled';
 import module1Preview from '../../../assets/module1-preview.webp';
 import { MODULE_CONFIG, UI_TEXT } from '../constants';
+import { achievementManager } from '../../../utils/achievementSystem';
 
-export const ModuleCard = ({ completedLevelsCount, progressPercentage }) => {
+export const ModuleCard = ({ completedLevelsCount, progressPercentage, onAchievementsClick }) => {
+  const totalPoints = achievementManager.getTotalPoints();
+  const progress = achievementManager.getProgress();
   const { title, totalLevels, description, tags, mobileHiddenTagsCount } = MODULE_CONFIG;
   const {
     moduleNumber,
@@ -73,6 +77,12 @@ export const ModuleCard = ({ completedLevelsCount, progressPercentage }) => {
             +{mobileHiddenTagsCount} 更多
           </Tag>
         </Tags>
+
+        {onAchievementsClick && (
+          <AchievementButton onClick={onAchievementsClick}>
+            🏆 成就 ({progress.unlocked}/{progress.total}) · {totalPoints} 分
+          </AchievementButton>
+        )}
       </ModuleInfo>
     </StyledModuleCard>
   );
